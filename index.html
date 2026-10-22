@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banani Jana | Geologist Portfolio</title>
+<meta name="description" content="Portfolio of Banani Jana, Jr. Geologist: mineral exploration, mineral resource estimation, remote sensing and GIS, geological modelling and Python.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f1e6; --paper2:#efe7d6; --card:#fffdf8; --ink:#27231d; --muted:#6c6455; --line:#ddd2bc;
+  --ochre:#c98a3a; --terra:#b4532e; --sage:#6f9174; --forest:#2e4a3b; --sky:#5d8aa5;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Figtree',system-ui,sans-serif;line-height:1.65;overflow-x:hidden}
+body::before{ /* faint contour map */
+  content:"";position:fixed;inset:0;z-index:-1;opacity:.55;pointer-events:none;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700' viewBox='0 0 700 700' fill='none' stroke='%23d9ccb0' stroke-width='1.1'><path d='M-20 90C90 20 190 130 300 80S520 10 720 100'/><path d='M-20 130C90 60 190 170 300 120S520 50 720 140'/><path d='M-20 170C90 100 190 210 300 160S520 90 720 180'/><path d='M-20 210C90 140 190 250 300 200S520 130 720 220'/><path d='M-20 450C110 380 230 500 360 440S560 380 720 470'/><path d='M-20 490C110 420 230 540 360 480S560 420 720 510'/><path d='M-20 530C110 460 230 580 360 520S560 460 720 550'/><ellipse cx='520' cy='300' rx='130' ry='70'/><ellipse cx='520' cy='300' rx='95' ry='50'/><ellipse cx='520' cy='300' rx='60' ry='31'/><ellipse cx='520' cy='300' rx='26' ry='13'/></svg>");
+}
+a{color:var(--terra);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:'Young Serif',serif;font-weight:400;line-height:1.2}
+.mono{font-family:'Space Mono',monospace}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(246,241,230,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:'Young Serif',serif;color:var(--forest);font-size:1.15rem;display:flex;align-items:center;gap:10px}
+.brand i{width:30px;height:30px;border-radius:50%;background:var(--forest);color:var(--paper);display:grid;place-items:center;font-style:normal;font-size:.78rem;font-family:'Space Mono',monospace}
+nav ul{display:flex;gap:6px;list-style:none;font-size:.86rem}
+nav ul a{color:var(--muted);padding:6px 12px;border-radius:999px}
+nav ul a:hover{background:var(--paper2);color:var(--forest);text-decoration:none}
+@media(max-width:860px){nav ul{display:none}}
+
+/* hero */
+.hero{padding:72px 0 56px}
+.hero .wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+.kicker{font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);font-weight:700}
+.hero h1{font-size:clamp(2.4rem,5.4vw,4rem);color:var(--forest);margin:12px 0 12px}
+.hero h1 em{font-style:normal;color:var(--terra)}
+.role{font-size:.95rem;color:var(--terra);font-weight:600;margin-bottom:16px;line-height:1.7}
+.chips .chip,.chip.key{background:#fff;color:var(--ink);border:1.5px solid #8a5a2b;font-weight:500}
+.hero p.lead{color:var(--muted);max-width:560px;font-size:1.04rem;text-align:justify;hyphens:auto}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 26px}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 11px;font-size:.78rem;color:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:11px}
+.btn{display:inline-block;padding:11px 22px;border-radius:999px;font-weight:600;font-size:.9rem;border:1.5px solid transparent;transition:.2s}
+.btn.solid{background:var(--forest);color:#f6f1e6}
+.btn.solid:hover{background:var(--terra);text-decoration:none;transform:translateY(-2px)}
+.btn.line{border-color:var(--forest);color:var(--forest)}
+.btn.line:hover{background:var(--forest);color:#f6f1e6;text-decoration:none}
+
+/* map card */
+.mapcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 18px 40px -22px rgba(46,74,59,.35);transform:rotate(1.2deg)}
+.mapcard svg{width:100%;height:auto;display:block;border-radius:12px}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin-top:14px;font-size:.78rem;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend b{width:14px;height:14px;border-radius:3px;flex:none;border:1px solid rgba(0,0,0,.12)}
+.maptitle{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:44px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;border-top:4px solid var(--ochre)}
+.stat:nth-child(2){border-top-color:var(--terra)}.stat:nth-child(3){border-top-color:var(--sage)}.stat:nth-child(4){border-top-color:var(--sky)}.stat:nth-child(5){border-top-color:var(--forest)}
+.stat b{font-family:'Young Serif',serif;font-size:1.9rem;color:var(--forest);display:block;font-weight:400}
+.stat span{color:var(--muted);font-size:.84rem}
+
+/* wavy divider */
+.wave{height:40px;background:var(--paper2);-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'><path d='M0 20C150 0 300 40 450 20S750 0 900 20 1100 36 1200 20V40H0Z'/></svg>") center/100% 100%;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'><path d='M0 20C150 0 300 40 450 20S750 0 900 20 1100 36 1200 20V40H0Z'/></svg>") center/100% 100%}
+.wave.flip{transform:scaleY(-1)}
+
+section{padding:72px 0}
+section.tint{background:var(--paper2)}
+.sh{margin-bottom:32px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.sh .no{font-family:'Space Mono',monospace;color:var(--ochre);font-size:.9rem;font-weight:700;padding-bottom:6px}
+.sh h2{font-size:clamp(1.7rem,3.4vw,2.4rem);color:var(--forest)}
+.sh p{color:var(--muted);flex-basis:100%;max-width:620px;font-size:.95rem}
+
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:.25s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 28px -18px rgba(46,74,59,.45);border-color:var(--sage)}
+.card h3{font-size:1.1rem;color:var(--forest);margin-bottom:8px}
+.card p{color:var(--muted);font-size:.93rem}
+.tag{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--terra);display:block;margin-bottom:10px;font-weight:700}
+.card .more{margin-top:14px;font-size:.85rem;font-weight:600;display:block}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.pill{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:.78rem;color:var(--muted)}
+.card.sk h3{display:flex;align-items:center;gap:10px}
+.card.sk h3::before{content:"";width:12px;height:12px;border-radius:3px;background:var(--c,var(--ochre));flex:none}
+
+/* about */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:34px;align-items:start}
+@media(max-width:860px){.about{grid-template-columns:1fr}}
+.about p{color:var(--muted);margin-bottom:14px;text-align:justify;hyphens:auto}
+
+/* side navigation */
+.side{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:4px;padding:10px 8px;background:rgba(255,253,248,.92);border:1px solid var(--line);border-radius:999px;box-shadow:0 10px 26px -16px rgba(46,74,59,.5);backdrop-filter:blur(6px)}
+.side a{position:relative;display:block;width:34px;height:30px;text-decoration:none}
+.side a::before{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;border:2px solid var(--sage);background:transparent;transition:.2s}
+.side a:hover::before{background:var(--sage)}
+.side a.on::before{background:var(--terra);border-color:var(--terra);transform:scale(1.35)}
+.side a span{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--forest);color:#f6f1e6;font-size:.76rem;font-weight:600;padding:4px 11px;border-radius:999px;opacity:0;pointer-events:none;transition:.2s}
+.side a:hover span,.side a:focus-visible span{opacity:1}
+@media(max-width:1240px){.side{display:none}}
+section,footer,header.hero{scroll-margin-top:60px}
+.about p strong{color:var(--ink)}
+.facts{list-style:none}
+.facts li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:.92rem}
+.facts li span:first-child{color:var(--muted)}
+.facts li span:last-child{text-align:right;font-weight:500}
+
+/* stratigraphic log */
+.log{display:flex;flex-direction:column}
+.layer{display:grid;grid-template-columns:34px 1fr;gap:0;margin-bottom:6px}
+.col{border-radius:6px;border:1px solid rgba(0,0,0,.14);min-height:100%}
+.lith-a{background:radial-gradient(circle,#b9904e 1.3px,transparent 1.6px) 0 0/9px 9px,#e9d3a1}
+.lith-b{background:repeating-linear-gradient(45deg,#c9d6c3 0 3px,#a9bfa7 3px 6px)}
+.lith-c{background:linear-gradient(#d0a88f 0 1px,transparent 1px) 0 0/100% 10px,linear-gradient(90deg,#d0a88f 0 1px,transparent 1px) 0 0/20px 20px,#e8cdb8}
+.lith-d{background:repeating-linear-gradient(0deg,#b6cddb 0 2px,#d3e2ea 2px 8px)}
+.lith-e{background:radial-gradient(circle,#8b7a61 1.2px,transparent 1.5px) 0 0/7px 7px,#d6c9ae}
+.lith-f{background:repeating-linear-gradient(-45deg,#e7c9a0 0 4px,#d9b27c 4px 8px)}
+.entry{background:var(--card);border:1px solid var(--line);border-radius:0 var(--r) var(--r) 0;padding:20px 24px;margin-left:-1px}
+.entry h3{font-size:1.12rem;color:var(--forest)}
+.entry .org{color:var(--terra);font-weight:600;font-size:.92rem}
+.entry .when{font-family:'Space Mono',monospace;font-size:.74rem;color:var(--muted);display:block;margin:3px 0 10px}
+.entry ul{margin-left:18px;color:var(--muted);font-size:.93rem}
+.entry li{margin-bottom:5px}
+.entry p{color:var(--muted);font-size:.93rem}
+.now-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:.68rem;background:var(--sage);color:#fff;border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:middle;letter-spacing:.06em}
+
+/* publications */
+.pub{display:grid;grid-template-columns:58px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.pub .y{font-family:'Space Mono',monospace;color:var(--ochre);font-weight:700;font-size:.9rem}
+.pub h3{font-family:'Figtree',sans-serif;font-weight:600;font-size:.98rem;line-height:1.45;color:var(--ink)}
+.pub p{color:var(--muted);font-size:.84rem;margin-top:3px}
+.pub p b{color:var(--forest);font-weight:600}
+
+ul.plain{list-style:none}
+ul.plain li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:.93rem;color:var(--muted)}
+ul.plain li b{color:var(--ink);font-weight:600}
+
+footer{padding:64px 0 40px;text-align:center;background:var(--forest);color:#efe8d6;margin-top:0}
+footer h2{font-size:2.1rem;margin-bottom:10px}
+footer p{color:#cfd8c9;max-width:540px;margin:0 auto 24px}
+footer .btn.solid{background:var(--ochre);color:#2a1f0e}
+footer .btn.line{border-color:#cfd8c9;color:#efe8d6}
+footer .btn.line:hover{background:#efe8d6;color:var(--forest)}
+.small{color:#a9b8a8;font-size:.78rem;margin-top:34px}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top" style="text-decoration:none"><i>BJ</i>Banani Jana</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#dissertation">Dissertation</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<aside class="side" aria-label="Section navigation">
+  <a href="#top" data-s="top" aria-label="Home"><span>Home</span></a>
+  <a href="#about" data-s="about" aria-label="About"><span>About</span></a>
+  <a href="#skills" data-s="skills" aria-label="Skills"><span>Skills</span></a>
+  <a href="#experience" data-s="experience" aria-label="Experience"><span>Experience</span></a>
+  <a href="#projects" data-s="projects" aria-label="Projects"><span>Projects</span></a>
+  <a href="#dissertation" data-s="dissertation" aria-label="Dissertation"><span>Dissertation</span></a>
+  <a href="#research" data-s="research" aria-label="Research"><span>Research</span></a>
+  <a href="#credentials" data-s="credentials" aria-label="Credentials"><span>Credentials</span></a>
+  <a href="#contact" data-s="contact" aria-label="Contact"><span>Contact</span></a>
+</aside>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Banani Jana · Geologist</span>
+      <h1>Reading the Earth, <em>layer by layer</em></h1>
+      <div class="role">Mineral Exploration | Mineral Resource Estimation | AutoCAD | Remote Sensing &amp; GIS | Geological Modelling | Technical Reporting | Python</div>
+      <p class="lead">I am Banani Jana, a geologist focused on mineral exploration and resource estimation, combining field-based geological understanding with AutoCAD, remote sensing and GIS, geological modelling, Python, and technical reporting.</p>
+      <div class="chips">
+        <span class="chip key">Mineral Exploration</span>
+        <span class="chip key">AutoCAD</span>
+        <span class="chip key">Python</span>
+        <span class="chip">Resource Estimation</span>
+        <span class="chip">Geological Modelling</span>
+        <span class="chip">Remote Sensing &amp; GIS</span>
+        <span class="chip">Golden Software Strater</span>
+      </div>
+      <div class="btns">
+        <a class="btn solid" href="Banani_Jana_CV.pdf" download>Download CV</a>
+        <a class="btn line" href="#projects">View projects</a>
+        <a class="btn line" href="https://www.linkedin.com/in/banani-2002-jana/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn line" href="https://github.com/bananijana" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="mapcard" aria-hidden="true">
+      <div class="maptitle"><span>Geological map · sheet 01</span><span>1 : 50 000</span></div>
+      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#f3ead6"/>
+        <path d="M0 210C60 170 110 230 180 195S300 150 400 190V300H0Z" fill="#e5cf9d"/>
+        <path d="M0 240C70 205 130 260 210 225S320 190 400 225V300H0Z" fill="#c9d6c3"/>
+        <path d="M0 268C80 240 150 285 230 255S340 235 400 258V300H0Z" fill="#b6cddb"/>
+        <path d="M0 120C70 80 130 140 210 100S330 60 400 100V210C300 150 180 195 110 170S30 190 0 210Z" fill="#e7c9a0" opacity=".85"/>
+        <g fill="none" stroke="#b09566" stroke-width="1">
+          <path d="M0 60C80 30 160 90 250 50S350 20 400 45"/><path d="M0 80C80 50 160 110 250 70S350 40 400 65"/>
+          <ellipse cx="300" cy="120" rx="64" ry="32"/><ellipse cx="300" cy="120" rx="42" ry="20"/><ellipse cx="300" cy="120" rx="20" ry="9"/>
+        </g>
+        <g stroke="#b4532e" stroke-width="2.2" fill="none" stroke-dasharray="7 5"><path d="M40 20L150 130L210 285"/></g>
+        <g fill="#2e4a3b"><circle cx="150" cy="130" r="5"/><circle cx="262" cy="150" r="5"/><circle cx="88" cy="215" r="5"/></g>
+        <g font-family="Space Mono,monospace" font-size="9" fill="#2e4a3b"><text x="158" y="126">BH-01</text><text x="270" y="154">BH-02</text><text x="96" y="219">BH-03</text></g>
+        <g transform="translate(350 40)" fill="#2e4a3b"><path d="M0 -18L6 0L0 -5L-6 0Z"/><text x="-4" y="14" font-size="10" font-family="Space Mono,monospace">N</text></g>
+        <g stroke="#2e4a3b" stroke-width="2"><path d="M20 285H70"/><path d="M20 281V289M45 283V287M70 281V289"/></g>
+      </svg>
+      <div class="legend">
+        <span><b style="background:#e7c9a0"></b>Mineralised zone</span>
+        <span><b style="background:#e5cf9d"></b>Sandstone</span>
+        <span><b style="background:#c9d6c3"></b>Metasediments</span>
+        <span><b style="background:#b6cddb"></b>Alluvium / aquifer</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats" style="grid-column:1/-1">
+      <div class="stat"><b>8</b><span>GitHub geoscience projects</span></div>
+      <div class="stat"><b>7</b><span>Conference papers &amp; publications</span></div>
+      <div class="stat"><b>13</b><span>Licenses &amp; certifications</span></div>
+      <div class="stat"><b>6</b><span>Professional memberships</span></div>
+      <div class="stat"><b>6</b><span>Field &amp; industry training programmes</span></div>
+    </div>
+  </div>
+</header>
+<div class="wave"></div>
+
+<section id="about" class="tint" style="padding-top:44px">
+  <div class="wrap about rv">
+    <div>
+      <div class="sh"><span class="no">01</span><h2>Mapping the subsurface</h2></div>
+      <p>I'm a <strong>Jr. Geologist at Shanvi Resources</strong> in Bhubaneswar, working in mineral exploration and mineral resource estimation. I use AutoCAD, ArcGIS, QGIS and Global Mapper for borehole correlation, geological modelling and technical reporting.</p>
+      <p>Before this, I completed an <strong>M.Sc. in Applied Geology at Presidency University</strong>, with a dissertation on river-aquifer interaction in the Hooghly–Rupnarayan Interfluve of the Lower Gangetic Plain. My field training includes uranium exploration with the <strong>Atomic Minerals Directorate</strong> in the Singhbhum Shear Zone, and field mapping in Purulia, Galudih, Kharia and Maithon.</p>
+      <p>I also write Python for geoscience, from drillhole and ore-body modelling to ERT inversion and machine-learning classification, and I have presented research at national and international conferences.</p>
+    </div>
+    <div class="card">
+      <ul class="facts">
+        <li><span>Currently</span><span>Jr. Geologist, Shanvi Resources</span></li>
+        <li><span>Location</span><span>Bhubaneswar, Odisha</span></li>
+        <li><span>Degree</span><span>M.Sc. Applied Geology</span></li>
+        <li><span>University</span><span>Presidency University, Kolkata</span></li>
+        <li><span>Languages</span><span>Bengali · Hindi · English</span></li>
+        <li><span>Relocation</span><span>Open to relocate</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="wave flip"></div>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sh rv"><span class="no">02</span><h2>Skills &amp; software</h2></div>
+    <div class="grid g3">
+      <div class="card sk rv" style="--c:var(--terra)"><h3>Mineral exploration</h3>
+        <div class="pills"><span class="pill">Mineral resource estimation</span><span class="pill">Borehole correlation</span><span class="pill">Core logging</span><span class="pill">Radioactivity mapping</span><span class="pill">Geological report writing</span><span class="pill">Orebody modelling</span><span class="pill">Ore geology</span></div></div>
+      <div class="card sk rv" style="--c:var(--sage)"><h3>GIS &amp; remote sensing</h3>
+        <div class="pills"><span class="pill">ArcGIS</span><span class="pill">QGIS</span><span class="pill">Global Mapper</span><span class="pill">Google Earth Pro</span><span class="pill">GRACE TWSA</span><span class="pill">Water body monitoring</span><span class="pill">Water storage mapping</span></div></div>
+      <div class="card sk rv" style="--c:var(--sky)"><h3>Hydrogeology &amp; geophysics</h3>
+        <div class="pills"><span class="pill">MODFLOW / MODPATH (GMS)</span><span class="pill">HEC-HMS</span><span class="pill">PHREEQC</span><span class="pill">ERT inversion</span><span class="pill">pyGIMLi</span><span class="pill">VES</span><span class="pill">Statistical modelling</span></div></div>
+      <div class="card sk rv" style="--c:var(--ochre)"><h3>Python &amp; machine learning</h3>
+        <div class="pills"><span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Matplotlib</span><span class="pill">Scikit-learn</span><span class="pill">Random Forest</span><span class="pill">Data visualization</span></div></div>
+      <div class="card sk rv" style="--c:var(--forest)"><h3>Lab &amp; field methods</h3>
+        <div class="pills"><span class="pill">Sample preparation</span><span class="pill">Thin sections</span><span class="pill">Petrographic microscopy</span><span class="pill">Grain size analysis</span><span class="pill">GPS &amp; DNRGarmin</span><span class="pill">Echo sounder</span><span class="pill">Abney level</span></div></div>
+      <div class="card sk rv" style="--c:#8a6b9b"><h3>Drafting &amp; office</h3>
+        <div class="pills"><span class="pill">AutoCAD</span><span class="pill">LibreCAD</span><span class="pill">Surfer</span><span class="pill">Golden Software Strater</span><span class="pill">RockWorks</span><span class="pill">Geo-Orient &amp; Geo-Rose</span><span class="pill">CorelDRAW</span><span class="pill">MS Office</span></div></div>
+    </div>
+  </div>
+</section>
+<div class="wave"></div>
+
+<section id="experience" class="tint" style="padding-top:44px">
+  <div class="wrap">
+    <div class="sh rv"><span class="no">03</span><h2>Experience &amp; field log</h2><p>Each layer is a placement or field programme, newest at the top.</p></div>
+    <div class="log">
+      <div class="layer rv"><div class="col lith-a"></div>
+        <div class="entry"><h3>Jr. Geologist<span class="now-badge">NOW</span></h3><div class="org">Shanvi Resources · Bhubaneswar, Odisha</div>
+          <span class="when">Aug 2026 – Present · Full-time · On-site</span>
+          <ul>
+            <li>Work in mineral exploration and mineral resource estimation, with borehole correlation and geological report writing.</li>
+            <li>Use AutoCAD for geological sections and ArcGIS, QGIS and Global Mapper for spatial analysis and mapping.</li>
+          </ul></div></div>
+      <div class="layer rv"><div class="col lith-b"></div>
+        <div class="entry"><h3>Industrial Training</h3><div class="org">Atomic Minerals Directorate for Exploration &amp; Research, Ghatshila, Jharkhand</div>
+          <span class="when">4–14 Aug 2025</span>
+          <ul>
+            <li>Geological mapping and radiometric checking in the Surda–Terenga area of the Singhbhum Shear Zone, with exposure to ore exploration and mapping, and to lithology and radiation-anomaly identification.</li>
+            <li>Industrial visit to the Uranium Corporation of India Limited (UCIL) Narwapahar underground mine, with basic exposure to underground mining operations and mine planning.</li>
+          </ul></div></div>
+      <div class="layer rv"><div class="col lith-d"></div>
+        <div class="entry"><h3>Field Training: Water Quality &amp; Bathymetry</h3><div class="org">Department of Geography, Adamas University · Taki, West Bengal</div>
+          <span class="when">Aug 2025</span>
+          <p>Two-day hands-on training in water quality measurement, bathymetric surveying, biomass estimation and post-field data processing, using an echo sounder, Abney level, multiparameter probe, laser distance finder, GPS and ArcGIS.</p></div></div>
+      <div class="layer rv"><div class="col lith-c"></div>
+        <div class="entry"><h3>Geological Field Work</h3><div class="org">Presidency University, Kolkata · North Purulia Shear Zone</div>
+          <span class="when">Mar 2025</span>
+          <p>Structural mapping and study of tectonic evolution, along with paleoclimate analysis, in and around the North Purulia Shear Zone (NPSZ).</p></div></div>
+      <div class="layer rv"><div class="col lith-e"></div>
+        <div class="entry"><h3>Earlier field programmes</h3><div class="org">Jogamaya Devi College, University of Calcutta</div>
+          <span class="when">2022 – 2024</span>
+          <ul>
+            <li><b>Kharia, West Bengal (Jan 2024):</b> open-cast coal mine, clay mine and dam visit, with exposure to the mining process.</li>
+            <li><b>Galudih, Jharkhand (Feb 2023):</b> geological studies and litho-structural mapping of the Chaibasa Formation.</li>
+            <li><b>Maithon, West Bengal (Jan 2022):</b> petrological studies and lithological identification.</li>
+          </ul></div></div>
+      <div class="layer rv"><div class="col lith-f"></div>
+        <div class="entry"><h3>Gramin Dak Sevak</h3><div class="org">Department of Posts, Government of India · Hooghly, West Bengal</div>
+          <span class="when">Jan 2022 – Jan 2025 · On-site</span>
+          <p>Served alongside my B.Sc. and the start of my M.Sc.</p></div></div>
+    </div>
+  </div>
+</section>
+<div class="wave flip"></div>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sh rv"><span class="no">04</span><h2>Projects on GitHub</h2></div>
+    <div class="grid g2">
+      <div class="card rv"><span class="tag">Mining · Python</span><h3>Orebody Geometry &amp; Grade-Tonnage from Drillhole Data</h3><p>Orebody geometry modelling and grade-tonnage computation from drillhole data.</p><a class="more" href="https://github.com/bananijana/drillhole-orebody-analysis-python" target="_blank" rel="noopener">Repository →</a></div>
+      <div class="card rv"><span class="tag">Hydrogeochemistry · Python</span><h3>Hydrogeochemical Data Processing &amp; Statistical Modelling</h3><p>Processing and statistical modelling of hydrogeochemical datasets in Python.</p><a class="more" href="https://github.com/bananijana/hydrogeochemistry-analysis-python" target="_blank" rel="noopener">Repository →</a></div>
+      <div class="card rv"><span class="tag">Exploration · ML</span><h3>Data-Driven Ore Potential Zonation</h3><p>Machine-learning ore potential zonation from multi-criteria geospatial evidence.</p><a class="more" href="https://github.com/bananijana/ore-potential-zonation-ml" target="_blank" rel="noopener">Repository →</a></div>
+      <div class="card rv"><span class="tag">Petrophysics · Python</span><h3>Well Log Analysis &amp; Seismic Forward Modelling</h3><p>Subsurface characterisation using petrophysical analysis of well logs and synthetic seismograms.</p><a class="more" href="https://github.com/bananijana/petrophysics-synthetic-seismic-python" target="_blank" rel="noopener">Repository →</a></div>
+      <div class="card rv"><span class="tag">Geophysics · pyGIMLi</span><h3>ERT-Based Subsurface Resistivity Characterisation</h3><p>Electrical resistivity tomography inversion using Python and pyGIMLi.</p><a class="more" href="https://github.com/bananijana/resistivity-inversion-python" target="_blank" rel="noopener">Repository →</a></div>
+      <div class="card rv"><span class="tag">Hydrogeology · Random Forest</span><h3>Groundwater Hydrochemical Facies Classification</h3><p>Random Forest classification of groundwater hydrochemical facies from water-quality parameters.</p><a class="more" href="https://github.com/bananijana/water-quality-classification-rf" target="_blank" rel="noopener">Repository →</a></div>
+      <div class="card rv"><span class="tag">Environment · ML · collaborative</span><h3>Mining-Zone Water Quality Impact Assessment</h3><p>Environmental impact assessment using geochemical indices and machine learning, built with Anikate Chowdhury.</p><a class="more" href="https://github.com/bananijana/2.eia-mining-zone-water-quality-ml" target="_blank" rel="noopener">Repository →</a></div>
+      <div class="card rv"><span class="tag">Hydrogeology · ML · collaborative</span><h3>ML-Assisted Groundwater Resilience Index (GRI)</h3><p>A machine-learning framework for a groundwater resilience index, built with Anikate Chowdhury.</p><a class="more" href="https://github.com/anikatechowdhury/ml-assisted-groundwater-resilience" target="_blank" rel="noopener">Repository →</a></div>
+    </div>
+  </div>
+</section>
+<div class="wave"></div>
+
+<section id="dissertation" class="tint" style="padding-top:44px">
+  <div class="wrap">
+    <div class="sh rv"><span class="no">05</span><h2>M.Sc. dissertation</h2></div>
+    <div class="card rv" style="border-left:5px solid var(--ochre);padding:28px 30px">
+      <span class="tag">Applied Geology · 2026</span>
+      <h3 style="font-size:1.35rem;margin-bottom:14px">Integrated Hydrogeological and Geochemical Investigation of River-Aquifer Interaction in Parts of Hooghly–Rupnarayan Interfluve</h3>
+      <p>A study from the Lower Gangetic Plain, India, submitted for the M.Sc. in Applied Geology at Presidency University, Kolkata.</p>
+      <ul class="facts" style="margin-top:16px;max-width:620px">
+        <li><span>Degree</span><span>M.Sc. Applied Geology</span></li>
+        <li><span>Institution</span><span>Presidency University, Kolkata</span></li>
+        <li><span>Study area</span><span>Hooghly–Rupnarayan Interfluve, Lower Gangetic Plain</span></li>
+        <li><span>Supervisor</span><span>Dr. Aditya Sarkar, Assistant Professor, Dept. of Geology</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="wave flip"></div>
+
+<section id="research">
+  <div class="wrap">
+    <div class="sh rv"><span class="no">06</span><h2>Conferences &amp; publications</h2></div>
+    <div class="rv">
+      <div class="pub"><span class="y">2026</span><div><h3>Evaluating Groundwater Resilience for WASH Planning in a Semi-Arid Region Through a GIS-Machine Learning Framework: A Case Study from Alwar District, Rajasthan</h3><p>National WASH Conference, SPM-NIWAS · <b>Banani Jana*</b>, Anikate Chowdhury, Sampurna Banerjee, Swagata Aman Ali, Aditya Sarkar</p></div></div>
+      <div class="pub"><span class="y">2026</span><div><h3>Machine Learning-Enhanced Analysis of Temporal b-Value Variations Across Different Tectonic Settings</h3><p>BMES-2026, Dept. of Applied Geophysics, IIT (ISM) Dhanbad · <b>Banani Jana*</b>, Anikate Chowdhury</p></div></div>
+      <div class="pub"><span class="y">2026</span><div><h3>Integrated Morphotectonic Assessment of the Torsa–Amo Chu River Basin Using Geomorphic Indices and Machine Learning</h3><p>BMES-2026, IIT (ISM) Dhanbad · Anikate Chowdhury*, <b>Banani Jana</b></p></div></div>
+      <div class="pub"><span class="y">2025</span><div><h3>Integrated Hydro-Geophysical and GIS-Based Characterization of Micro-Level Aquifers in the Sundarbans, West Bengal</h3><p>Water Summit 2025, Manav Rachna University · <b>Banani Jana*</b>, Anikate Chowdhury, Aditya Sarkar</p></div></div>
+      <div class="pub"><span class="y">2025</span><div><h3>Forecasting Groundwater Dynamics in Jalpaiguri District, North Bengal, Using Machine Learning and GRACE Satellite Data</h3><p>Water Summit 2025, Manav Rachna University · Anikate Chowdhury*, <b>Banani Jana</b>, Aditya Sarkar</p></div></div>
+      <div class="pub"><span class="y">2024</span><div><h3>Quantification of Groundwater Quality Issues in Reference to Urbanization in Parts of Barddhaman District, West Bengal</h3><p>32nd West Bengal State Science &amp; Technology Congress · Snehasish Das*, Anikate Chowdhury, <b>Banani Jana</b></p></div></div>
+      <div class="pub"><span class="y">2024</span><div><h3>Carbon Dioxide Sequestration and Role of Basaltic Minerals in It</h3><p>Archipelago '24, Ballygunge Science College, University of Calcutta · <b>Banani Jana*</b>, Nisha Paul</p></div></div>
+      <p class="mono" style="color:var(--muted);font-size:.74rem;margin-top:14px">* presenting / first author</p>
+    </div>
+  </div>
+</section>
+<div class="wave"></div>
+
+<section id="credentials" class="tint" style="padding-top:44px">
+  <div class="wrap">
+    <div class="sh rv"><span class="no">07</span><h2>Education, certifications &amp; recognition</h2></div>
+    <div class="grid g2">
+      <div class="card rv"><h3>Education</h3>
+        <ul class="plain">
+          <li><b>M.Sc. Applied Geology</b>, Presidency University, Kolkata · 2024–2026</li>
+          <li><b>B.Sc. (Hons) Geology</b>, Jogamaya Devi College, University of Calcutta · 2021–2024</li>
+        </ul></div>
+      <div class="card rv"><h3>Certifications</h3>
+        <ul class="plain">
+          <li><b>Geological Survey of India (GSITI):</b> Application of Remote Sensing in Mineral Exploration; Regional Geophysical Mapping for Mineral Targeting</li>
+          <li><b>IIRS, ISRO:</b> Remote Sensing and Digital Image Analysis; Advances in Remote Sensing Techniques for Geological Applications</li>
+          <li><b>University of Oulu, Finland:</b> Remote Sensing in Water Resources and Climate Change, PhD short course (2 ECTS)</li>
+          <li><b>Esri:</b> ArcGIS Imagery MOOC · <b>Quest GIS:</b> QGIS Mastery</li>
+          <li><b>Jogamaya Devi College:</b> Application of Remote Sensing and GIS in Geosciences</li>
+          <li><b>Columbia University:</b> Machine Learning I · <b>IBM:</b> Applied Data Science with Python</li>
+          <li><b>TerraPy:</b> Python Programming in Geology</li>
+        </ul></div>
+      <div class="card rv"><h3>Workshops</h3>
+        <ul class="plain">
+          <li>BMES-2026: Bridging Mathematics and Earth Sciences, IIT (ISM) Dhanbad</li>
+          <li>Interpretation of Different Kinds of Geophysical Datasets with Case Studies, GSI Kolkata (2025)</li>
+          <li>Advanced Image Analysis for Geospatial Professionals, IIRS-ISRO (2025)</li>
+          <li>Sampada Sanyog, Dept. of Geology, Presidency University (2025)</li>
+        </ul></div>
+      <div class="card rv"><h3>Recognition</h3>
+        <ul class="plain">
+          <li><b>National Scholarship Portal (NSP) Scholar</b>, Government of India (2021)</li>
+          <li><b>Rank 3</b>, PUMBDET postgraduate entrance examination for Presidency University, Geology (2024)</li>
+          <li>Participant, <b>International Astronomical Search Collaboration (IASC)</b>: asteroid tracking and image analysis, NASA-supported (2025)</li>
+        </ul></div>
+      <div class="card rv"><h3>Professional memberships</h3>
+        <ul class="plain">
+          <li><a href="https://iah.org" target="_blank" rel="noopener"><b>International Association of Hydrogeologists (IAH)</b></a> · Associate Student Member</li>
+          <li><a href="https://www.isprs.org" target="_blank" rel="noopener"><b>International Society for Photogrammetry and Remote Sensing (ISPRS)</b></a> · Individual Member</li>
+          <li><a href="https://younghs.com" target="_blank" rel="noopener"><b>Young Hydrologic Society (YHS)</b></a> · Member</li>
+          <li><a href="https://www.aipg.org" target="_blank" rel="noopener"><b>American Institute of Professional Geologists (AIPG)</b></a> · Member</li>
+          <li><b>Arizona Geological Society</b> · Student Member</li>
+          <li><b>Geological Institute, Presidency University</b> · Permanent Member</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap rv">
+    <h2>Let's map something together.</h2>
+    <p>I'm open to geology roles in mineral exploration, resource estimation, GIS and remote sensing, and hydrogeology, and I'm willing to relocate. Email or LinkedIn is the quickest way to reach me.</p>
+    <div class="btns" style="justify-content:center">
+      <a class="btn solid" href="mailto:bananijana2002@gmail.com">bananijana2002@gmail.com</a>
+      <a class="btn line" href="https://www.linkedin.com/in/banani-2002-jana/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn line" href="https://github.com/bananijana" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="small mono">© 2026 Banani Jana · India</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}});
+  },{threshold:.1});
+  els.forEach(function(e){io.observe(e)});
+
+  /* side navigation: highlight the section in view */
+  var links=document.querySelectorAll('.side a');
+  var ids=[].map.call(links,function(a){return a.getAttribute('data-s')});
+  function spy(){
+    var y=window.scrollY+window.innerHeight*0.35,cur=ids[0];
+    ids.forEach(function(id){var el=document.getElementById(id);if(el&&el.offsetTop<=y)cur=id});
+    links.forEach(function(a){a.classList.toggle('on',a.getAttribute('data-s')===cur)});
+  }
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+</script>
+</body>
+</html>
