@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banani Jana | Geologist</title>
+<meta name="description" content="Portfolio of Banani Jana: mineral exploration, mineral resource estimation, AutoCAD, remote sensing and GIS, geological modelling, technical reporting and Python.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛰️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --chalk:#f4f6f3; --paper:#fff; --ink:#1d2b31; --mute:#566870; --line:#d5dcd7;
+  --ochre:#c58a2b; --sienna:#a24f2d; --slate:#2d6f74; --schist:#7b6fa3; --moss:#6f8a4f;
+  --head:'Bricolage Grotesque',system-ui,sans-serif; --body:'Public Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{background:var(--chalk);color:var(--ink);font:400 1rem/1.65 var(--body)}
+a{color:var(--slate)} a:hover{color:var(--sienna)}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+h1,h2,h3{font-family:var(--head);line-height:1.15}
+.layout{display:grid;grid-template-columns:210px minmax(0,1fr);max-width:1180px;margin:0 auto}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+
+/* stratigraphic column nav */
+.rail{position:sticky;top:0;height:100vh;padding:34px 18px 30px 22px;display:flex;flex-direction:column}
+.rail b{font:700 1.05rem var(--head);margin-bottom:22px}
+.rail ol{list-style:none;flex:1;display:flex;flex-direction:column;border:1.5px solid var(--ink);border-radius:3px;overflow:hidden}
+.rail li{flex:1;display:flex}
+.rail li+li{border-top:1.5px solid var(--ink)}
+.rail a{flex:1;display:flex;align-items:center;gap:10px;padding:0 10px;text-decoration:none;color:var(--ink);font-size:.86rem;font-weight:500;background:var(--paper);transition:background .2s}
+.rail a:hover{background:#eaefe9}
+.rail a svg{width:22px;height:22px;flex:none;border:1px solid var(--ink)}
+@media(max-width:900px){
+  .rail{height:auto;padding:12px 16px;z-index:9;background:rgba(244,246,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-direction:row;align-items:center;gap:14px;overflow-x:auto}
+  .rail b{margin:0;white-space:nowrap}
+  .rail ol{flex-direction:row;border:0;gap:6px;flex:none;overflow:visible}
+  .rail li+li{border:0}
+  .rail a{border:1px solid var(--line);border-radius:99px;padding:5px 12px;white-space:nowrap}
+  .rail a svg{display:none}
+}
+main{padding:34px 28px 60px 10px}
+@media(max-width:900px){main{padding:20px 18px 50px}}
+
+/* hero */
+.hero h1{font-size:clamp(3rem,8vw,5.6rem);font-weight:700;letter-spacing:-.025em}
+.hero .role{font:500 clamp(1.05rem,2.2vw,1.35rem) var(--head);color:var(--sienna);margin:10px 0 16px}
+.hero p.lead{max-width:60ch;color:var(--mute);font-size:1.06rem}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+p+p{margin-top:12px}
+.facts{background:var(--paper);border:1.5px solid var(--ink);border-radius:4px;padding:6px 18px;align-self:start}
+.facts div{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.facts div:last-child{border:0}
+.facts span:first-child{color:var(--mute)} .facts span:last-child{text-align:right;font-weight:500}
+
+/* experience as a real column (newest on top) */
+.col{border-left:5px solid var(--sienna);margin-left:6px}
+.unit{position:relative;padding:4px 0 26px 24px}
+.unit::before{content:"";position:absolute;left:-12px;top:9px;width:19px;height:19px;border-radius:50%;background:var(--chalk);border:3px solid var(--sienna)}
+.unit.now::before{background:var(--ochre)}
+.unit time{font-size:.82rem;color:var(--mute);font-weight:600}
+.unit h3{font-size:1.15rem;margin:2px 0}
+.unit .org{color:var(--slate);font-weight:600;font-size:.94rem}
+.unit p{color:var(--mute);font-size:.94rem;margin-top:6px;max-width:68ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.chip{border:1px solid var(--line);background:var(--paper);border-radius:4px;padding:2px 9px;font-size:.78rem}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--paper);border:1.5px solid var(--ink);border-radius:4px;padding:18px 20px;display:flex;flex-direction:column;border-top:6px solid var(--c,var(--slate))}
+.card h3{font-size:1.04rem;margin-bottom:6px}
+.card p{font-size:.9rem;color:var(--mute);flex:1}
+.card .go{margin-top:12px;font-size:.86rem;font-weight:600}
+.pub{background:var(--paper);border:1.5px solid var(--ink);border-radius:4px;padding:16px 20px;margin-bottom:12px}
+.pub h3{font-size:1.02rem;font-weight:600;font-family:var(--body);line-height:1.4}
+.pub .v{color:var(--slate);font-size:.88rem;margin-top:4px}
+.pub .a{color:var(--mute);font-size:.84rem;margin-top:2px}
+.sk{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.sk>div{background:var(--paper);border:1.5px solid var(--ink);border-radius:4px;padding:16px 18px}
+.sk h3{font-size:.98rem;margin-bottom:4px}
+.list{list-style:none}
+.list li{padding:8px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+.list li:last-child{border:0}
+.list small{display:block;color:var(--mute);font-size:.82rem}
+.hon li::before{content:"◆ ";color:var(--ochre)}
+.contact{background:var(--ink);color:#fff;border-radius:4px;padding:34px 30px;margin-top:56px}
+.contact h2{font-size:1.8rem;margin-bottom:8px}
+.contact p{color:#cdd8d6;max-width:56ch;margin-bottom:18px}
+.contact .btn{background:transparent;color:#fff;border-color:#fff}
+.contact .btn:hover{background:#fff;color:var(--ink)}
+.contact .btn.pri{background:var(--ochre);border-color:var(--ochre);color:#1d2b31}
+footer{font-size:.8rem;color:var(--mute);margin-top:22px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Text-free geological cross-section background across the whole website */
+.site-geology-bg{
+  position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden;
+  opacity:.28;
+}
+.site-geology-bg svg{width:100%;height:100%;display:block}
+
+
+/* Clear, high-contrast hero buttons */
+.hero .btns{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+  margin-top:24px;
+}
+.hero .btns .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:13px 20px;
+  border:2px solid var(--ochre);
+  border-radius:7px;
+  background:#fffdf7;
+  color:#245f68;
+  font-size:1rem;
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:.045em;
+  text-transform:uppercase;
+  text-decoration:none;
+  box-shadow:0 3px 0 rgba(29,43,49,.14);
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.hero .btns .btn:hover,
+.hero .btns .btn:focus-visible{
+  background:#f1dca8;
+  color:#1d2b31;
+  transform:translateY(-2px);
+  box-shadow:0 5px 0 rgba(29,43,49,.16);
+  text-decoration:none;
+}
+.hero .btns .btn.pri{
+  background:var(--ochre);
+  color:#1d2b31;
+  border-color:var(--ochre);
+}
+.hero .btns .btn.pri:hover,
+.hero .btns .btn.pri:focus-visible{
+  background:#e5c47b;
+}
+@media(max-width:600px){
+  .hero .btns .btn{flex:1 1 100%;width:100%;font-size:.95rem}
+}
+
+
+/* Readable About section typography and spacing */
+#about p,
+.about p,
+section#about .body-copy{
+  font-size:1.16rem;
+  line-height:1.9;
+  max-width:78ch;
+  margin:0 0 22px;
+  color:var(--ink, #1d2b31);
+}
+#about h2,
+.about h2{
+  font-size:clamp(2.2rem, 4vw, 3rem);
+  line-height:1.15;
+  margin-bottom:24px;
+}
+#about{
+  padding-top:32px;
+  padding-bottom:34px;
+}
+@media(max-width:700px){
+  #about p,
+  .about p,
+  section#about .body-copy{font-size:1.08rem;line-height:1.8}
+}
+
+
+/* Section headings: icon tile + bold, readable title, matching the reference */
+section h2,
+section .section-title,
+h2.section-title{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  font-size:clamp(2rem, 3.3vw, 2.65rem);
+  line-height:1.15;
+  font-weight:800;
+  letter-spacing:-.025em;
+  margin:0 0 26px;
+  color:var(--ink, #1d2b31);
+}
+section h2::before,
+section .section-title::before,
+h2.section-title::before{
+  content:"";
+  display:inline-block;
+  flex:0 0 46px;
+  width:46px;
+  height:46px;
+  border:1.5px solid #1d2b31;
+  background-color:#f1dca8;
+  background-image:
+    radial-gradient(circle at 3px 3px, #a9822f 1.2px, transparent 1.4px);
+  background-size:8px 8px;
+}
+section h2 + p,
+section .section-title + p{
+  margin-top:0;
+}
+section h2:not(:first-child){
+  margin-top:26px;
+}
+@media(max-width:650px){
+  section h2,
+  section .section-title,
+  h2.section-title{
+    gap:12px;
+    font-size:clamp(1.65rem, 6vw, 2.1rem);
+  }
+  section h2::before,
+  section .section-title::before,
+  h2.section-title::before{
+    flex-basis:36px;
+    width:36px;
+    height:36px;
+  }
+}
+
+/* Sidebar information panel: clean, aligned rows like the reference */
+.facts,
+.facts-card,
+.about-facts,
+.fact-list{
+  border:1px solid #26363b;
+  border-radius:5px;
+  padding:12px 22px;
+  background:rgba(255,255,255,.9);
+}
+.facts > div,
+.facts-card > div,
+.about-facts > div,
+.fact-list > div{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+  padding:13px 0;
+  border-bottom:1px solid #d7dedb;
+}
+.facts > div:last-child,
+.facts-card > div:last-child,
+.about-facts > div:last-child,
+.fact-list > div:last-child{
+  border-bottom:0;
+}
+.facts span,
+.facts-card span,
+.about-facts span,
+.fact-list span{
+  line-height:1.55;
+}
+
+
+/* Education, honours, and courses: side-by-side columns like the reference */
+#learning .two,
+#learning .learning-grid,
+#education .learning-grid,
+.learning-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1.45fr) minmax(300px, 1fr);
+  gap:34px;
+  align-items:start;
+}
+.learning-grid > *{min-width:0}
+.learning-grid h3{
+  font-size:1.2rem;
+  line-height:1.3;
+  margin:0 0 12px;
+}
+@media(max-width:800px){
+  #learning .two,
+  #learning .learning-grid,
+  #education .learning-grid,
+  .learning-grid{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+}
+
+
+/* Contact panel: restore the clear heading and distinct CTA buttons */
+#contact .contact,
+.contact{
+  background:#1d2b31;
+  color:#f8f5ec;
+  border-radius:5px;
+  padding:40px 38px;
+  margin:0;
+}
+#contact .contact h2,
+.contact h2{
+  display:block;
+  color:#fffaf0;
+  font-size:clamp(2rem, 3vw, 2.5rem);
+  line-height:1.15;
+  font-weight:800;
+  margin:0 0 14px;
+}
+#contact .contact h2::before,
+.contact h2::before{
+  content:none;
+  display:none;
+}
+#contact .contact p,
+.contact p{
+  color:#e1e7e7;
+  font-size:1.12rem;
+  line-height:1.75;
+  max-width:70ch;
+  margin:0 0 24px;
+}
+#contact .contact .btns,
+.contact .btns{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  margin-top:0;
+}
+#contact .contact .btns .btn,
+.contact .btns .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:54px;
+  padding:14px 24px;
+  border:1.5px solid #f5f1e7;
+  border-radius:5px;
+  color:#fffaf0;
+  background:transparent;
+  font-size:1rem;
+  font-weight:750;
+  line-height:1.2;
+  text-decoration:none;
+  text-transform:none;
+  box-shadow:none;
+}
+#contact .contact .btns .btn.pri,
+.contact .btns .btn.pri{
+  background:#c88b28;
+  border-color:#c88b28;
+  color:#1d2b31;
+}
+#contact .contact .btns .btn:hover,
+.contact .btns .btn:hover{
+  transform:translateY(-2px);
+  text-decoration:none;
+  background:#f1dca8;
+  color:#1d2b31;
+}
+#contact .contact .btns .btn.pri:hover,
+.contact .btns .btn.pri:hover{
+  background:#e5b65b;
+}
+@media(max-width:600px){
+  #contact .contact,
+  .contact{padding:28px 22px}
+  #contact .contact .btns .btn,
+  .contact .btns .btn{flex:1 1 100%;width:100%}
+}
+
+
+/* Remove oversized solid/patterned geology blocks; retain only small heading icon tiles */
+.site-geology-bg,
+.geology-background,
+.geology-block,
+.strata-block,
+section .geology-panel{
+  display:none !important;
+}
+
+
+/* Remove decorative pattern tiles before all section headings */
+section h2::before,
+section .section-title::before,
+h2.section-title::before{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  border:0 !important;
+  width:0 !important;
+  height:0 !important;
+  flex:0 0 0 !important;
+}
+section h2,
+section .section-title,
+h2.section-title{
+  gap:0 !important;
+}
+
+
+/* About copy and facts card side-by-side */
+#about .about-layout,
+#about .about-grid,
+#about .about-columns{
+  display:grid;
+  grid-template-columns:minmax(0, 1.3fr) minmax(300px, .9fr);
+  gap:34px;
+  align-items:start;
+}
+#about .about-facts,
+#about .facts,
+#about .facts-card,
+#about .fact-list{
+  width:100%;
+  max-width:none;
+  margin:0;
+}
+@media(max-width:850px){
+  #about .about-layout,
+  #about .about-grid,
+  #about .about-columns{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* Consistent compact section-heading marker: small tile before the title, never a block above */
+section h2,
+section .section-title,
+h2.section-title{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  font-size:clamp(2rem, 3.3vw, 2.65rem);
+  line-height:1.15;
+  font-weight:800;
+  margin:0 0 26px;
+}
+section h2::before,
+section .section-title::before,
+h2.section-title::before{
+  content:"";
+  display:inline-block !important;
+  flex:0 0 46px !important;
+  width:46px !important;
+  height:46px !important;
+  border:1.5px solid #26363b !important;
+  background-color:#f1dca8 !important;
+  background-image:radial-gradient(circle at 3px 3px, #a9822f 1.2px, transparent 1.4px) !important;
+  background-size:8px 8px !important;
+}
+section h2::after,
+section .section-title::after,
+h2.section-title::after{
+  content:none !important;
+  display:none !important;
+}
+@media(max-width:650px){
+  section h2,
+  section .section-title,
+  h2.section-title{gap:12px;font-size:clamp(1.65rem, 6vw, 2.1rem)}
+  section h2::before,
+  section .section-title::before,
+  h2.section-title::before{
+    flex-basis:36px !important;width:36px !important;height:36px !important;
+  }
+}
+
+
+/* ===== Revision: stratified geological background, heading fixes ===== */
+.strata-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--chalk)}
+.strata-bg svg{width:100%;height:100%;display:block;opacity:.75}
+.strata-bg::after{content:"";position:absolute;inset:0;background:rgba(244,246,243,.5)}
+/* remove the big block above each heading; keep only the small bullet tile beside it */
+.hd svg{display:none !important}
+.hd{display:block}
+/* more breathing room between sections */
+section{margin-top:12px}
+#learning{margin-top:90px;padding-top:10px}
+/* portfolio headline */
+.hero h1{font-size:clamp(2.3rem,5.6vw,4.1rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;max-width:16ch}
+.hero h1 em{font-style:normal;color:var(--sienna);background:linear-gradient(transparent 82%,rgba(197,138,43,.4) 82%)}
+.hero .kicker{display:inline-block;font:700 .8rem var(--head);letter-spacing:.2em;text-transform:uppercase;color:var(--slate);margin-bottom:14px;padding-bottom:6px;border-bottom:3px solid var(--ochre)}
+
+/* ===== Revision 2 ===== */
+/* hero primary buttons: white bg + yellow border like the others */
+.hero .btns .btn.pri{background:#fffdf7;color:#245f68;border-color:var(--ochre)}
+.hero .btns .btn.pri:hover,.hero .btns .btn.pri:focus-visible{background:#f1dca8;color:#1d2b31}
+/* About justified */
+#about p{text-align:justify;hyphens:auto}
+/* sidebar name: bigger, blue */
+.rail b{font-size:1.65rem;line-height:1.15;color:#1f5fbf;font-weight:800;letter-spacing:-.01em}
+/* slightly larger text everywhere */
+body{font-size:1.08rem}
+.hero p.lead{font-size:1.2rem}
+.hero .role{font-size:clamp(1.15rem,2.3vw,1.45rem)}
+.rail a{font-size:.95rem}
+.facts div{font-size:1.02rem}
+.unit time{font-size:.92rem}
+.unit h3{font-size:1.28rem}
+.unit .org{font-size:1.04rem}
+.unit p{font-size:1.04rem}
+.chip{font-size:.88rem}
+.card h3{font-size:1.15rem}
+.card p{font-size:1.02rem}
+.card .go{font-size:.96rem}
+.pub h3{font-size:1.12rem}
+.pub .v{font-size:.98rem}
+.pub .a{font-size:.94rem}
+.sk h3{font-size:1.08rem}
+.list li{font-size:1.04rem}
+.list small{font-size:.92rem}
+footer{font-size:.9rem}
+
+/* ===== Revision 3: section headings = sand tile + bold title (as in reference) ===== */
+section h2,section .section-title{display:flex !important;align-items:center;gap:18px !important;font-size:clamp(2.1rem,3.6vw,2.8rem);font-weight:800;letter-spacing:-.025em;color:var(--ink);margin:0 0 26px}
+section h2::before,section .section-title::before{
+  content:"" !important;display:inline-block !important;flex:0 0 52px !important;width:52px !important;height:52px !important;
+  border:1.5px solid #26363b !important;border-radius:0 !important;
+  background-color:#f1dca8 !important;
+  background-image:radial-gradient(circle at 3px 3px,#a9822f 1.3px,transparent 1.5px),radial-gradient(circle at 7px 7px,#a9822f 1.3px,transparent 1.5px) !important;
+  background-size:8px 8px !important;
+}
+#contact .contact h2{display:block !important}
+#contact .contact h2::before{content:none !important;display:none !important}
+@media(max-width:650px){section h2::before{flex-basis:40px !important;width:40px !important;height:40px !important}section h2{gap:12px !important}}
+
+/* ===== Revision 4: different tile pattern/colour per section ===== */
+#about h2::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Crect width='12' height='8' fill='%23dfe8de'/%3E%3Cpath d='M0 4h12M6 0v4M0 4v4M12 4v4' stroke='%235d7a63' stroke-width='.8' fill='none'/%3E%3C/svg%3E") !important;background-size:12px 8px !important;background-color:#dfe8de !important}
+#experience h2::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Crect width='10' height='10' fill='%23f0c9b8'/%3E%3Cpath d='M5 2v6M2 5h6' stroke='%23a24f2d' stroke-width='1'/%3E%3C/svg%3E") !important;background-size:10px 10px !important;background-color:#f0c9b8 !important}
+#projects h2::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Crect width='10' height='10' fill='%23c9dedd'/%3E%3Cpath d='M0 10L10 0M-2 2L2-2M8 12L12 8' stroke='%232d6f74' stroke-width='1'/%3E%3C/svg%3E") !important;background-size:10px 10px !important;background-color:#c9dedd !important}
+#publications h2::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Crect width='10' height='6' fill='%23d6d1e6'/%3E%3Cpath d='M0 3h10' stroke='%236c5f98' stroke-width='1'/%3E%3C/svg%3E") !important;background-size:10px 6px !important;background-color:#d6d1e6 !important}
+#skills h2::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Crect width='12' height='12' fill='%23dde3cf'/%3E%3Ccircle cx='3' cy='3' r='2' fill='none' stroke='%236f8a4f'/%3E%3Ccircle cx='9' cy='9' r='2.4' fill='none' stroke='%236f8a4f'/%3E%3C/svg%3E") !important;background-size:12px 12px !important;background-color:#dde3cf !important}
+#learning h2::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='8' height='8' fill='%23f1dca8'/%3E%3Ccircle cx='2' cy='2' r='1' fill='%23a9822f'/%3E%3Ccircle cx='6' cy='6' r='1' fill='%23a9822f'/%3E%3C/svg%3E") !important;background-size:8px 8px !important;background-color:#f1dca8 !important}
+</style>
+</head>
+<body>
+<div class="strata-bg" aria-hidden="true"><svg viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice"><path d="M0,-80.0 L24,-72.1 L48,-64.5 L72,-57.3 L96,-50.9 L120,-45.3 L144,-40.7 L168,-37.2 L192,-34.7 L216,-33.2 L240,-32.7 L264,-32.8 L288,-33.6 L312,-34.7 L336,-36.0 L360,-37.2 L384,-38.2 L408,-38.8 L432,-38.8 L456,-38.2 L480,-37.0 L504,-35.2 L528,-32.9 L552,-30.2 L576,-27.3 L600,-24.3 L624,-21.6 L648,-19.2 L672,-17.3 L696,-16.2 L720,-15.8 L744,-16.3 L768,-17.7 L792,-19.9 L816,-22.8 L840,-26.2 L864,-30.0 L888,-33.9 L912,-37.7 L936,-41.1 L960,-43.9 L984,-46.0 L1008,-47.0 L1032,-47.0 L1056,-45.8 L1080,-43.4 L1104,-40.0 L1128,-35.5 L1152,-30.2 L1176,-24.2 L1200,-17.8 L1224,-11.3 L1248,-4.7 L1272,1.5 L1296,7.3 L1320,12.5 L1344,17.0 L1368,20.7 L1392,23.7 L1416,25.9 L1440,27.5 L1440,118.6 L1416,119.5 L1392,120.1 L1368,120.1 L1344,119.4 L1320,117.8 L1296,115.2 L1272,111.6 L1248,106.9 L1224,101.2 L1200,94.7 L1176,87.6 L1152,79.9 L1128,72.0 L1104,64.1 L1080,56.5 L1056,49.4 L1032,43.1 L1008,37.6 L984,33.1 L960,29.6 L936,27.3 L912,26.0 L888,25.6 L864,25.9 L840,26.9 L816,28.2 L792,29.7 L768,31.2 L744,32.4 L720,33.2 L696,33.4 L672,33.1 L648,32.1 L624,30.5 L600,28.3 L576,25.8 L552,23.0 L528,20.2 L504,17.5 L480,15.2 L456,13.4 L432,12.2 L408,11.9 L384,12.3 L360,13.6 L336,15.7 L312,18.5 L288,21.8 L264,25.5 L240,29.2 L216,32.9 L192,36.1 L168,38.8 L144,40.6 L120,41.5 L96,41.3 L72,39.9 L48,37.4 L24,33.7 L0,29.1Z" fill="#f3e7c6"/><path d="M0,-80.0 L24,-72.1 L48,-64.5 L72,-57.3 L96,-50.9 L120,-45.3 L144,-40.7 L168,-37.2 L192,-34.7 L216,-33.2 L240,-32.7 L264,-32.8 L288,-33.6 L312,-34.7 L336,-36.0 L360,-37.2 L384,-38.2 L408,-38.8 L432,-38.8 L456,-38.2 L480,-37.0 L504,-35.2 L528,-32.9 L552,-30.2 L576,-27.3 L600,-24.3 L624,-21.6 L648,-19.2 L672,-17.3 L696,-16.2 L720,-15.8 L744,-16.3 L768,-17.7 L792,-19.9 L816,-22.8 L840,-26.2 L864,-30.0 L888,-33.9 L912,-37.7 L936,-41.1 L960,-43.9 L984,-46.0 L1008,-47.0 L1032,-47.0 L1056,-45.8 L1080,-43.4 L1104,-40.0 L1128,-35.5 L1152,-30.2 L1176,-24.2 L1200,-17.8 L1224,-11.3 L1248,-4.7 L1272,1.5 L1296,7.3 L1320,12.5 L1344,17.0 L1368,20.7 L1392,23.7 L1416,25.9 L1440,27.5 L1440,118.6 L1416,119.5 L1392,120.1 L1368,120.1 L1344,119.4 L1320,117.8 L1296,115.2 L1272,111.6 L1248,106.9 L1224,101.2 L1200,94.7 L1176,87.6 L1152,79.9 L1128,72.0 L1104,64.1 L1080,56.5 L1056,49.4 L1032,43.1 L1008,37.6 L984,33.1 L960,29.6 L936,27.3 L912,26.0 L888,25.6 L864,25.9 L840,26.9 L816,28.2 L792,29.7 L768,31.2 L744,32.4 L720,33.2 L696,33.4 L672,33.1 L648,32.1 L624,30.5 L600,28.3 L576,25.8 L552,23.0 L528,20.2 L504,17.5 L480,15.2 L456,13.4 L432,12.2 L408,11.9 L384,12.3 L360,13.6 L336,15.7 L312,18.5 L288,21.8 L264,25.5 L240,29.2 L216,32.9 L192,36.1 L168,38.8 L144,40.6 L120,41.5 L96,41.3 L72,39.9 L48,37.4 L24,33.7 L0,29.1Z" fill="url(#sand)" opacity=".30"/><path d="M0,-80.0 L24,-72.1 L48,-64.5 L72,-57.3 L96,-50.9 L120,-45.3 L144,-40.7 L168,-37.2 L192,-34.7 L216,-33.2 L240,-32.7 L264,-32.8 L288,-33.6 L312,-34.7 L336,-36.0 L360,-37.2 L384,-38.2 L408,-38.8 L432,-38.8 L456,-38.2 L480,-37.0 L504,-35.2 L528,-32.9 L552,-30.2 L576,-27.3 L600,-24.3 L624,-21.6 L648,-19.2 L672,-17.3 L696,-16.2 L720,-15.8 L744,-16.3 L768,-17.7 L792,-19.9 L816,-22.8 L840,-26.2 L864,-30.0 L888,-33.9 L912,-37.7 L936,-41.1 L960,-43.9 L984,-46.0 L1008,-47.0 L1032,-47.0 L1056,-45.8 L1080,-43.4 L1104,-40.0 L1128,-35.5 L1152,-30.2 L1176,-24.2 L1200,-17.8 L1224,-11.3 L1248,-4.7 L1272,1.5 L1296,7.3 L1320,12.5 L1344,17.0 L1368,20.7 L1392,23.7 L1416,25.9 L1440,27.5" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,29.1 L24,33.7 L48,37.4 L72,39.9 L96,41.3 L120,41.5 L144,40.6 L168,38.8 L192,36.1 L216,32.9 L240,29.2 L264,25.5 L288,21.8 L312,18.5 L336,15.7 L360,13.6 L384,12.3 L408,11.9 L432,12.2 L456,13.4 L480,15.2 L504,17.5 L528,20.2 L552,23.0 L576,25.8 L600,28.3 L624,30.5 L648,32.1 L672,33.1 L696,33.4 L720,33.2 L744,32.4 L768,31.2 L792,29.7 L816,28.2 L840,26.9 L864,25.9 L888,25.6 L912,26.0 L936,27.3 L960,29.6 L984,33.1 L1008,37.6 L1032,43.1 L1056,49.4 L1080,56.5 L1104,64.1 L1128,72.0 L1152,79.9 L1176,87.6 L1200,94.7 L1224,101.2 L1248,106.9 L1272,111.6 L1296,115.2 L1320,117.8 L1344,119.4 L1368,120.1 L1392,120.1 L1416,119.5 L1440,118.6 L1440,174.2 L1416,177.4 L1392,180.9 L1368,184.5 L1344,187.9 L1320,191.0 L1296,193.5 L1272,195.2 L1248,195.9 L1224,195.5 L1200,193.9 L1176,191.2 L1152,187.3 L1128,182.5 L1104,176.8 L1080,170.5 L1056,163.7 L1032,156.8 L1008,149.9 L984,143.3 L960,137.2 L936,131.8 L912,127.1 L888,123.2 L864,120.1 L840,117.8 L816,116.1 L792,115.0 L768,114.2 L744,113.5 L720,112.8 L696,111.8 L672,110.5 L648,108.6 L624,106.1 L600,103.0 L576,99.2 L552,94.9 L528,90.1 L504,85.1 L480,80.0 L456,75.0 L432,70.3 L408,66.3 L384,63.0 L360,60.6 L336,59.2 L312,58.9 L288,59.7 L264,61.6 L240,64.4 L216,68.0 L192,72.1 L168,76.5 L144,81.0 L120,85.4 L96,89.3 L72,92.6 L48,95.1 L24,96.6 L0,97.2Z" fill="#e9eadb"/><path d="M0,29.1 L24,33.7 L48,37.4 L72,39.9 L96,41.3 L120,41.5 L144,40.6 L168,38.8 L192,36.1 L216,32.9 L240,29.2 L264,25.5 L288,21.8 L312,18.5 L336,15.7 L360,13.6 L384,12.3 L408,11.9 L432,12.2 L456,13.4 L480,15.2 L504,17.5 L528,20.2 L552,23.0 L576,25.8 L600,28.3 L624,30.5 L648,32.1 L672,33.1 L696,33.4 L720,33.2 L744,32.4 L768,31.2 L792,29.7 L816,28.2 L840,26.9 L864,25.9 L888,25.6 L912,26.0 L936,27.3 L960,29.6 L984,33.1 L1008,37.6 L1032,43.1 L1056,49.4 L1080,56.5 L1104,64.1 L1128,72.0 L1152,79.9 L1176,87.6 L1200,94.7 L1224,101.2 L1248,106.9 L1272,111.6 L1296,115.2 L1320,117.8 L1344,119.4 L1368,120.1 L1392,120.1 L1416,119.5 L1440,118.6 L1440,174.2 L1416,177.4 L1392,180.9 L1368,184.5 L1344,187.9 L1320,191.0 L1296,193.5 L1272,195.2 L1248,195.9 L1224,195.5 L1200,193.9 L1176,191.2 L1152,187.3 L1128,182.5 L1104,176.8 L1080,170.5 L1056,163.7 L1032,156.8 L1008,149.9 L984,143.3 L960,137.2 L936,131.8 L912,127.1 L888,123.2 L864,120.1 L840,117.8 L816,116.1 L792,115.0 L768,114.2 L744,113.5 L720,112.8 L696,111.8 L672,110.5 L648,108.6 L624,106.1 L600,103.0 L576,99.2 L552,94.9 L528,90.1 L504,85.1 L480,80.0 L456,75.0 L432,70.3 L408,66.3 L384,63.0 L360,60.6 L336,59.2 L312,58.9 L288,59.7 L264,61.6 L240,64.4 L216,68.0 L192,72.1 L168,76.5 L144,81.0 L120,85.4 L96,89.3 L72,92.6 L48,95.1 L24,96.6 L0,97.2Z" fill="url(#lime)" opacity=".30"/><path d="M0,29.1 L24,33.7 L48,37.4 L72,39.9 L96,41.3 L120,41.5 L144,40.6 L168,38.8 L192,36.1 L216,32.9 L240,29.2 L264,25.5 L288,21.8 L312,18.5 L336,15.7 L360,13.6 L384,12.3 L408,11.9 L432,12.2 L456,13.4 L480,15.2 L504,17.5 L528,20.2 L552,23.0 L576,25.8 L600,28.3 L624,30.5 L648,32.1 L672,33.1 L696,33.4 L720,33.2 L744,32.4 L768,31.2 L792,29.7 L816,28.2 L840,26.9 L864,25.9 L888,25.6 L912,26.0 L936,27.3 L960,29.6 L984,33.1 L1008,37.6 L1032,43.1 L1056,49.4 L1080,56.5 L1104,64.1 L1128,72.0 L1152,79.9 L1176,87.6 L1200,94.7 L1224,101.2 L1248,106.9 L1272,111.6 L1296,115.2 L1320,117.8 L1344,119.4 L1368,120.1 L1392,120.1 L1416,119.5 L1440,118.6" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,97.2 L24,96.6 L48,95.1 L72,92.6 L96,89.3 L120,85.4 L144,81.0 L168,76.5 L192,72.1 L216,68.0 L240,64.4 L264,61.6 L288,59.7 L312,58.9 L336,59.2 L360,60.6 L384,63.0 L408,66.3 L432,70.3 L456,75.0 L480,80.0 L504,85.1 L528,90.1 L552,94.9 L576,99.2 L600,103.0 L624,106.1 L648,108.6 L672,110.5 L696,111.8 L720,112.8 L744,113.5 L768,114.2 L792,115.0 L816,116.1 L840,117.8 L864,120.1 L888,123.2 L912,127.1 L936,131.8 L960,137.2 L984,143.3 L1008,149.9 L1032,156.8 L1056,163.7 L1080,170.5 L1104,176.8 L1128,182.5 L1152,187.3 L1176,191.2 L1200,193.9 L1224,195.5 L1248,195.9 L1272,195.2 L1296,193.5 L1320,191.0 L1344,187.9 L1368,184.5 L1392,180.9 L1416,177.4 L1440,174.2 L1440,214.3 L1416,215.3 L1392,217.2 L1368,220.1 L1344,223.7 L1320,227.9 L1296,232.4 L1272,236.9 L1248,241.3 L1224,245.2 L1200,248.5 L1176,250.9 L1152,252.4 L1128,252.9 L1104,252.3 L1080,250.8 L1056,248.3 L1032,245.0 L1008,241.2 L984,237.0 L960,232.6 L936,228.3 L912,224.2 L888,220.5 L864,217.3 L840,214.6 L816,212.7 L792,211.3 L768,210.4 L744,209.8 L720,209.6 L696,209.3 L672,208.9 L648,208.1 L624,206.7 L600,204.7 L576,201.8 L552,198.1 L528,193.4 L504,187.9 L480,181.7 L456,174.9 L432,167.6 L408,160.2 L384,152.9 L360,145.9 L336,139.4 L312,133.6 L288,128.8 L264,125.1 L240,122.5 L216,121.1 L192,120.8 L168,121.5 L144,123.1 L120,125.4 L96,128.2 L72,131.1 L48,134.1 L24,136.9 L0,139.2Z" fill="#efd9cc"/><path d="M0,97.2 L24,96.6 L48,95.1 L72,92.6 L96,89.3 L120,85.4 L144,81.0 L168,76.5 L192,72.1 L216,68.0 L240,64.4 L264,61.6 L288,59.7 L312,58.9 L336,59.2 L360,60.6 L384,63.0 L408,66.3 L432,70.3 L456,75.0 L480,80.0 L504,85.1 L528,90.1 L552,94.9 L576,99.2 L600,103.0 L624,106.1 L648,108.6 L672,110.5 L696,111.8 L720,112.8 L744,113.5 L768,114.2 L792,115.0 L816,116.1 L840,117.8 L864,120.1 L888,123.2 L912,127.1 L936,131.8 L960,137.2 L984,143.3 L1008,149.9 L1032,156.8 L1056,163.7 L1080,170.5 L1104,176.8 L1128,182.5 L1152,187.3 L1176,191.2 L1200,193.9 L1224,195.5 L1248,195.9 L1272,195.2 L1296,193.5 L1320,191.0 L1344,187.9 L1368,184.5 L1392,180.9 L1416,177.4 L1440,174.2 L1440,214.3 L1416,215.3 L1392,217.2 L1368,220.1 L1344,223.7 L1320,227.9 L1296,232.4 L1272,236.9 L1248,241.3 L1224,245.2 L1200,248.5 L1176,250.9 L1152,252.4 L1128,252.9 L1104,252.3 L1080,250.8 L1056,248.3 L1032,245.0 L1008,241.2 L984,237.0 L960,232.6 L936,228.3 L912,224.2 L888,220.5 L864,217.3 L840,214.6 L816,212.7 L792,211.3 L768,210.4 L744,209.8 L720,209.6 L696,209.3 L672,208.9 L648,208.1 L624,206.7 L600,204.7 L576,201.8 L552,198.1 L528,193.4 L504,187.9 L480,181.7 L456,174.9 L432,167.6 L408,160.2 L384,152.9 L360,145.9 L336,139.4 L312,133.6 L288,128.8 L264,125.1 L240,122.5 L216,121.1 L192,120.8 L168,121.5 L144,123.1 L120,125.4 L96,128.2 L72,131.1 L48,134.1 L24,136.9 L0,139.2Z" fill="url(#gran)" opacity=".30"/><path d="M0,97.2 L24,96.6 L48,95.1 L72,92.6 L96,89.3 L120,85.4 L144,81.0 L168,76.5 L192,72.1 L216,68.0 L240,64.4 L264,61.6 L288,59.7 L312,58.9 L336,59.2 L360,60.6 L384,63.0 L408,66.3 L432,70.3 L456,75.0 L480,80.0 L504,85.1 L528,90.1 L552,94.9 L576,99.2 L600,103.0 L624,106.1 L648,108.6 L672,110.5 L696,111.8 L720,112.8 L744,113.5 L768,114.2 L792,115.0 L816,116.1 L840,117.8 L864,120.1 L888,123.2 L912,127.1 L936,131.8 L960,137.2 L984,143.3 L1008,149.9 L1032,156.8 L1056,163.7 L1080,170.5 L1104,176.8 L1128,182.5 L1152,187.3 L1176,191.2 L1200,193.9 L1224,195.5 L1248,195.9 L1272,195.2 L1296,193.5 L1320,191.0 L1344,187.9 L1368,184.5 L1392,180.9 L1416,177.4 L1440,174.2" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,139.2 L24,136.9 L48,134.1 L72,131.1 L96,128.2 L120,125.4 L144,123.1 L168,121.5 L192,120.8 L216,121.1 L240,122.5 L264,125.1 L288,128.8 L312,133.6 L336,139.4 L360,145.9 L384,152.9 L408,160.2 L432,167.6 L456,174.9 L480,181.7 L504,187.9 L528,193.4 L552,198.1 L576,201.8 L600,204.7 L624,206.7 L648,208.1 L672,208.9 L696,209.3 L720,209.6 L744,209.8 L768,210.4 L792,211.3 L816,212.7 L840,214.6 L864,217.3 L888,220.5 L912,224.2 L936,228.3 L960,232.6 L984,237.0 L1008,241.2 L1032,245.0 L1056,248.3 L1080,250.8 L1104,252.3 L1128,252.9 L1152,252.4 L1176,250.9 L1200,248.5 L1224,245.2 L1248,241.3 L1272,236.9 L1296,232.4 L1320,227.9 L1344,223.7 L1368,220.1 L1392,217.2 L1416,215.3 L1440,214.3 L1440,286.7 L1416,282.0 L1392,278.5 L1368,276.1 L1344,274.9 L1320,274.8 L1296,275.7 L1272,277.5 L1248,279.9 L1224,282.9 L1200,286.0 L1176,289.2 L1152,292.1 L1128,294.7 L1104,296.6 L1080,297.8 L1056,298.3 L1032,298.0 L1008,296.9 L984,295.3 L960,293.2 L936,290.7 L912,288.2 L888,285.7 L864,283.5 L840,281.7 L816,280.5 L792,279.9 L768,280.0 L744,280.7 L720,282.1 L696,283.9 L672,286.0 L648,288.3 L624,290.4 L600,292.2 L576,293.5 L552,294.0 L528,293.6 L504,292.1 L480,289.5 L456,285.8 L432,281.0 L408,275.3 L384,268.7 L360,261.5 L336,253.9 L312,246.1 L288,238.4 L264,231.1 L240,224.3 L216,218.3 L192,213.1 L168,208.9 L144,205.7 L120,203.4 L96,202.0 L72,201.3 L48,201.1 L24,201.3 L0,201.7Z" fill="#dfe9e8"/><path d="M0,139.2 L24,136.9 L48,134.1 L72,131.1 L96,128.2 L120,125.4 L144,123.1 L168,121.5 L192,120.8 L216,121.1 L240,122.5 L264,125.1 L288,128.8 L312,133.6 L336,139.4 L360,145.9 L384,152.9 L408,160.2 L432,167.6 L456,174.9 L480,181.7 L504,187.9 L528,193.4 L552,198.1 L576,201.8 L600,204.7 L624,206.7 L648,208.1 L672,208.9 L696,209.3 L720,209.6 L744,209.8 L768,210.4 L792,211.3 L816,212.7 L840,214.6 L864,217.3 L888,220.5 L912,224.2 L936,228.3 L960,232.6 L984,237.0 L1008,241.2 L1032,245.0 L1056,248.3 L1080,250.8 L1104,252.3 L1128,252.9 L1152,252.4 L1176,250.9 L1200,248.5 L1224,245.2 L1248,241.3 L1272,236.9 L1296,232.4 L1320,227.9 L1344,223.7 L1368,220.1 L1392,217.2 L1416,215.3 L1440,214.3 L1440,286.7 L1416,282.0 L1392,278.5 L1368,276.1 L1344,274.9 L1320,274.8 L1296,275.7 L1272,277.5 L1248,279.9 L1224,282.9 L1200,286.0 L1176,289.2 L1152,292.1 L1128,294.7 L1104,296.6 L1080,297.8 L1056,298.3 L1032,298.0 L1008,296.9 L984,295.3 L960,293.2 L936,290.7 L912,288.2 L888,285.7 L864,283.5 L840,281.7 L816,280.5 L792,279.9 L768,280.0 L744,280.7 L720,282.1 L696,283.9 L672,286.0 L648,288.3 L624,290.4 L600,292.2 L576,293.5 L552,294.0 L528,293.6 L504,292.1 L480,289.5 L456,285.8 L432,281.0 L408,275.3 L384,268.7 L360,261.5 L336,253.9 L312,246.1 L288,238.4 L264,231.1 L240,224.3 L216,218.3 L192,213.1 L168,208.9 L144,205.7 L120,203.4 L96,202.0 L72,201.3 L48,201.1 L24,201.3 L0,201.7Z" fill="url(#ore)" opacity=".30"/><path d="M0,139.2 L24,136.9 L48,134.1 L72,131.1 L96,128.2 L120,125.4 L144,123.1 L168,121.5 L192,120.8 L216,121.1 L240,122.5 L264,125.1 L288,128.8 L312,133.6 L336,139.4 L360,145.9 L384,152.9 L408,160.2 L432,167.6 L456,174.9 L480,181.7 L504,187.9 L528,193.4 L552,198.1 L576,201.8 L600,204.7 L624,206.7 L648,208.1 L672,208.9 L696,209.3 L720,209.6 L744,209.8 L768,210.4 L792,211.3 L816,212.7 L840,214.6 L864,217.3 L888,220.5 L912,224.2 L936,228.3 L960,232.6 L984,237.0 L1008,241.2 L1032,245.0 L1056,248.3 L1080,250.8 L1104,252.3 L1128,252.9 L1152,252.4 L1176,250.9 L1200,248.5 L1224,245.2 L1248,241.3 L1272,236.9 L1296,232.4 L1320,227.9 L1344,223.7 L1368,220.1 L1392,217.2 L1416,215.3 L1440,214.3" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,201.7 L24,201.3 L48,201.1 L72,201.3 L96,202.0 L120,203.4 L144,205.7 L168,208.9 L192,213.1 L216,218.3 L240,224.3 L264,231.1 L288,238.4 L312,246.1 L336,253.9 L360,261.5 L384,268.7 L408,275.3 L432,281.0 L456,285.8 L480,289.5 L504,292.1 L528,293.6 L552,294.0 L576,293.5 L600,292.2 L624,290.4 L648,288.3 L672,286.0 L696,283.9 L720,282.1 L744,280.7 L768,280.0 L792,279.9 L816,280.5 L840,281.7 L864,283.5 L888,285.7 L912,288.2 L936,290.7 L960,293.2 L984,295.3 L1008,296.9 L1032,298.0 L1056,298.3 L1080,297.8 L1104,296.6 L1128,294.7 L1152,292.1 L1176,289.2 L1200,286.0 L1224,282.9 L1248,279.9 L1272,277.5 L1296,275.7 L1320,274.8 L1344,274.9 L1368,276.1 L1392,278.5 L1416,282.0 L1440,286.7 L1440,398.2 L1416,390.4 L1392,383.1 L1368,376.3 L1344,370.3 L1320,365.1 L1296,361.0 L1272,357.8 L1248,355.6 L1224,354.3 L1200,353.7 L1176,353.7 L1152,354.1 L1128,354.7 L1104,355.2 L1080,355.5 L1056,355.5 L1032,354.9 L1008,353.7 L984,351.9 L960,349.6 L936,346.8 L912,343.5 L888,340.1 L864,336.7 L840,333.4 L816,330.5 L792,328.2 L768,326.6 L744,325.9 L720,326.1 L696,327.3 L672,329.3 L648,332.2 L624,335.7 L600,339.7 L576,344.0 L552,348.3 L528,352.3 L504,355.8 L480,358.6 L456,360.6 L432,361.5 L408,361.3 L384,359.9 L360,357.5 L336,354.0 L312,349.6 L288,344.5 L264,338.9 L240,333.0 L216,327.1 L192,321.3 L168,316.0 L144,311.1 L120,306.9 L96,303.4 L72,300.6 L48,298.4 L24,296.9 L0,295.7Z" fill="#e6e0ee"/><path d="M0,201.7 L24,201.3 L48,201.1 L72,201.3 L96,202.0 L120,203.4 L144,205.7 L168,208.9 L192,213.1 L216,218.3 L240,224.3 L264,231.1 L288,238.4 L312,246.1 L336,253.9 L360,261.5 L384,268.7 L408,275.3 L432,281.0 L456,285.8 L480,289.5 L504,292.1 L528,293.6 L552,294.0 L576,293.5 L600,292.2 L624,290.4 L648,288.3 L672,286.0 L696,283.9 L720,282.1 L744,280.7 L768,280.0 L792,279.9 L816,280.5 L840,281.7 L864,283.5 L888,285.7 L912,288.2 L936,290.7 L960,293.2 L984,295.3 L1008,296.9 L1032,298.0 L1056,298.3 L1080,297.8 L1104,296.6 L1128,294.7 L1152,292.1 L1176,289.2 L1200,286.0 L1224,282.9 L1248,279.9 L1272,277.5 L1296,275.7 L1320,274.8 L1344,274.9 L1368,276.1 L1392,278.5 L1416,282.0 L1440,286.7 L1440,398.2 L1416,390.4 L1392,383.1 L1368,376.3 L1344,370.3 L1320,365.1 L1296,361.0 L1272,357.8 L1248,355.6 L1224,354.3 L1200,353.7 L1176,353.7 L1152,354.1 L1128,354.7 L1104,355.2 L1080,355.5 L1056,355.5 L1032,354.9 L1008,353.7 L984,351.9 L960,349.6 L936,346.8 L912,343.5 L888,340.1 L864,336.7 L840,333.4 L816,330.5 L792,328.2 L768,326.6 L744,325.9 L720,326.1 L696,327.3 L672,329.3 L648,332.2 L624,335.7 L600,339.7 L576,344.0 L552,348.3 L528,352.3 L504,355.8 L480,358.6 L456,360.6 L432,361.5 L408,361.3 L384,359.9 L360,357.5 L336,354.0 L312,349.6 L288,344.5 L264,338.9 L240,333.0 L216,327.1 L192,321.3 L168,316.0 L144,311.1 L120,306.9 L96,303.4 L72,300.6 L48,298.4 L24,296.9 L0,295.7Z" fill="url(#shale)" opacity=".30"/><path d="M0,201.7 L24,201.3 L48,201.1 L72,201.3 L96,202.0 L120,203.4 L144,205.7 L168,208.9 L192,213.1 L216,218.3 L240,224.3 L264,231.1 L288,238.4 L312,246.1 L336,253.9 L360,261.5 L384,268.7 L408,275.3 L432,281.0 L456,285.8 L480,289.5 L504,292.1 L528,293.6 L552,294.0 L576,293.5 L600,292.2 L624,290.4 L648,288.3 L672,286.0 L696,283.9 L720,282.1 L744,280.7 L768,280.0 L792,279.9 L816,280.5 L840,281.7 L864,283.5 L888,285.7 L912,288.2 L936,290.7 L960,293.2 L984,295.3 L1008,296.9 L1032,298.0 L1056,298.3 L1080,297.8 L1104,296.6 L1128,294.7 L1152,292.1 L1176,289.2 L1200,286.0 L1224,282.9 L1248,279.9 L1272,277.5 L1296,275.7 L1320,274.8 L1344,274.9 L1368,276.1 L1392,278.5 L1416,282.0 L1440,286.7" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,295.7 L24,296.9 L48,298.4 L72,300.6 L96,303.4 L120,306.9 L144,311.1 L168,316.0 L192,321.3 L216,327.1 L240,333.0 L264,338.9 L288,344.5 L312,349.6 L336,354.0 L360,357.5 L384,359.9 L408,361.3 L432,361.5 L456,360.6 L480,358.6 L504,355.8 L528,352.3 L552,348.3 L576,344.0 L600,339.7 L624,335.7 L648,332.2 L672,329.3 L696,327.3 L720,326.1 L744,325.9 L768,326.6 L792,328.2 L816,330.5 L840,333.4 L864,336.7 L888,340.1 L912,343.5 L936,346.8 L960,349.6 L984,351.9 L1008,353.7 L1032,354.9 L1056,355.5 L1080,355.5 L1104,355.2 L1128,354.7 L1152,354.1 L1176,353.7 L1200,353.7 L1224,354.3 L1248,355.6 L1272,357.8 L1296,361.0 L1320,365.1 L1344,370.3 L1368,376.3 L1392,383.1 L1416,390.4 L1440,398.2 L1440,503.5 L1416,498.2 L1392,492.4 L1368,486.4 L1344,480.2 L1320,474.3 L1296,468.7 L1272,463.7 L1248,459.3 L1224,455.7 L1200,452.7 L1176,450.4 L1152,448.8 L1128,447.5 L1104,446.6 L1080,445.7 L1056,444.7 L1032,443.5 L1008,441.8 L984,439.5 L960,436.5 L936,432.8 L912,428.4 L888,423.3 L864,417.8 L840,411.9 L816,405.8 L792,399.8 L768,394.1 L744,389.0 L720,384.5 L696,381.0 L672,378.5 L648,377.2 L624,377.0 L600,377.9 L576,379.9 L552,382.7 L528,386.2 L504,390.2 L480,394.4 L456,398.6 L432,402.5 L408,405.9 L384,408.7 L360,410.6 L336,411.7 L312,411.8 L288,411.0 L264,409.4 L240,407.1 L216,404.2 L192,401.0 L168,397.7 L144,394.4 L120,391.4 L96,388.7 L72,386.6 L48,385.0 L24,384.1 L0,383.8Z" fill="#eee3bf"/><path d="M0,295.7 L24,296.9 L48,298.4 L72,300.6 L96,303.4 L120,306.9 L144,311.1 L168,316.0 L192,321.3 L216,327.1 L240,333.0 L264,338.9 L288,344.5 L312,349.6 L336,354.0 L360,357.5 L384,359.9 L408,361.3 L432,361.5 L456,360.6 L480,358.6 L504,355.8 L528,352.3 L552,348.3 L576,344.0 L600,339.7 L624,335.7 L648,332.2 L672,329.3 L696,327.3 L720,326.1 L744,325.9 L768,326.6 L792,328.2 L816,330.5 L840,333.4 L864,336.7 L888,340.1 L912,343.5 L936,346.8 L960,349.6 L984,351.9 L1008,353.7 L1032,354.9 L1056,355.5 L1080,355.5 L1104,355.2 L1128,354.7 L1152,354.1 L1176,353.7 L1200,353.7 L1224,354.3 L1248,355.6 L1272,357.8 L1296,361.0 L1320,365.1 L1344,370.3 L1368,376.3 L1392,383.1 L1416,390.4 L1440,398.2 L1440,503.5 L1416,498.2 L1392,492.4 L1368,486.4 L1344,480.2 L1320,474.3 L1296,468.7 L1272,463.7 L1248,459.3 L1224,455.7 L1200,452.7 L1176,450.4 L1152,448.8 L1128,447.5 L1104,446.6 L1080,445.7 L1056,444.7 L1032,443.5 L1008,441.8 L984,439.5 L960,436.5 L936,432.8 L912,428.4 L888,423.3 L864,417.8 L840,411.9 L816,405.8 L792,399.8 L768,394.1 L744,389.0 L720,384.5 L696,381.0 L672,378.5 L648,377.2 L624,377.0 L600,377.9 L576,379.9 L552,382.7 L528,386.2 L504,390.2 L480,394.4 L456,398.6 L432,402.5 L408,405.9 L384,408.7 L360,410.6 L336,411.7 L312,411.8 L288,411.0 L264,409.4 L240,407.1 L216,404.2 L192,401.0 L168,397.7 L144,394.4 L120,391.4 L96,388.7 L72,386.6 L48,385.0 L24,384.1 L0,383.8Z" fill="url(#sand)" opacity=".30"/><path d="M0,295.7 L24,296.9 L48,298.4 L72,300.6 L96,303.4 L120,306.9 L144,311.1 L168,316.0 L192,321.3 L216,327.1 L240,333.0 L264,338.9 L288,344.5 L312,349.6 L336,354.0 L360,357.5 L384,359.9 L408,361.3 L432,361.5 L456,360.6 L480,358.6 L504,355.8 L528,352.3 L552,348.3 L576,344.0 L600,339.7 L624,335.7 L648,332.2 L672,329.3 L696,327.3 L720,326.1 L744,325.9 L768,326.6 L792,328.2 L816,330.5 L840,333.4 L864,336.7 L888,340.1 L912,343.5 L936,346.8 L960,349.6 L984,351.9 L1008,353.7 L1032,354.9 L1056,355.5 L1080,355.5 L1104,355.2 L1128,354.7 L1152,354.1 L1176,353.7 L1200,353.7 L1224,354.3 L1248,355.6 L1272,357.8 L1296,361.0 L1320,365.1 L1344,370.3 L1368,376.3 L1392,383.1 L1416,390.4 L1440,398.2" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,383.8 L24,384.1 L48,385.0 L72,386.6 L96,388.7 L120,391.4 L144,394.4 L168,397.7 L192,401.0 L216,404.2 L240,407.1 L264,409.4 L288,411.0 L312,411.8 L336,411.7 L360,410.6 L384,408.7 L408,405.9 L432,402.5 L456,398.6 L480,394.4 L504,390.2 L528,386.2 L552,382.7 L576,379.9 L600,377.9 L624,377.0 L648,377.2 L672,378.5 L696,381.0 L720,384.5 L744,389.0 L768,394.1 L792,399.8 L816,405.8 L840,411.9 L864,417.8 L888,423.3 L912,428.4 L936,432.8 L960,436.5 L984,439.5 L1008,441.8 L1032,443.5 L1056,444.7 L1080,445.7 L1104,446.6 L1128,447.5 L1152,448.8 L1176,450.4 L1200,452.7 L1224,455.7 L1248,459.3 L1272,463.7 L1296,468.7 L1320,474.3 L1344,480.2 L1368,486.4 L1392,492.4 L1416,498.2 L1440,503.5 L1440,567.7 L1416,566.9 L1392,565.2 L1368,562.8 L1344,559.8 L1320,556.5 L1296,553.0 L1272,549.5 L1248,546.3 L1224,543.4 L1200,541.0 L1176,539.2 L1152,538.1 L1128,537.5 L1104,537.4 L1080,537.7 L1056,538.1 L1032,538.6 L1008,538.9 L984,538.8 L960,538.1 L936,536.7 L912,534.4 L888,531.1 L864,526.8 L840,521.5 L816,515.4 L792,508.5 L768,501.1 L744,493.4 L720,485.6 L696,478.0 L672,470.7 L648,464.2 L624,458.4 L600,453.7 L576,450.0 L552,447.4 L528,446.0 L504,445.6 L480,446.0 L456,447.2 L432,448.9 L408,450.9 L384,453.0 L360,455.0 L336,456.6 L312,457.8 L288,458.3 L264,458.2 L240,457.4 L216,456.0 L192,454.1 L168,451.8 L144,449.2 L120,446.6 L96,444.2 L72,442.2 L48,440.6 L24,439.7 L0,439.5Z" fill="#e3ead6"/><path d="M0,383.8 L24,384.1 L48,385.0 L72,386.6 L96,388.7 L120,391.4 L144,394.4 L168,397.7 L192,401.0 L216,404.2 L240,407.1 L264,409.4 L288,411.0 L312,411.8 L336,411.7 L360,410.6 L384,408.7 L408,405.9 L432,402.5 L456,398.6 L480,394.4 L504,390.2 L528,386.2 L552,382.7 L576,379.9 L600,377.9 L624,377.0 L648,377.2 L672,378.5 L696,381.0 L720,384.5 L744,389.0 L768,394.1 L792,399.8 L816,405.8 L840,411.9 L864,417.8 L888,423.3 L912,428.4 L936,432.8 L960,436.5 L984,439.5 L1008,441.8 L1032,443.5 L1056,444.7 L1080,445.7 L1104,446.6 L1128,447.5 L1152,448.8 L1176,450.4 L1200,452.7 L1224,455.7 L1248,459.3 L1272,463.7 L1296,468.7 L1320,474.3 L1344,480.2 L1368,486.4 L1392,492.4 L1416,498.2 L1440,503.5 L1440,567.7 L1416,566.9 L1392,565.2 L1368,562.8 L1344,559.8 L1320,556.5 L1296,553.0 L1272,549.5 L1248,546.3 L1224,543.4 L1200,541.0 L1176,539.2 L1152,538.1 L1128,537.5 L1104,537.4 L1080,537.7 L1056,538.1 L1032,538.6 L1008,538.9 L984,538.8 L960,538.1 L936,536.7 L912,534.4 L888,531.1 L864,526.8 L840,521.5 L816,515.4 L792,508.5 L768,501.1 L744,493.4 L720,485.6 L696,478.0 L672,470.7 L648,464.2 L624,458.4 L600,453.7 L576,450.0 L552,447.4 L528,446.0 L504,445.6 L480,446.0 L456,447.2 L432,448.9 L408,450.9 L384,453.0 L360,455.0 L336,456.6 L312,457.8 L288,458.3 L264,458.2 L240,457.4 L216,456.0 L192,454.1 L168,451.8 L144,449.2 L120,446.6 L96,444.2 L72,442.2 L48,440.6 L24,439.7 L0,439.5Z" fill="url(#grav)" opacity=".30"/><path d="M0,383.8 L24,384.1 L48,385.0 L72,386.6 L96,388.7 L120,391.4 L144,394.4 L168,397.7 L192,401.0 L216,404.2 L240,407.1 L264,409.4 L288,411.0 L312,411.8 L336,411.7 L360,410.6 L384,408.7 L408,405.9 L432,402.5 L456,398.6 L480,394.4 L504,390.2 L528,386.2 L552,382.7 L576,379.9 L600,377.9 L624,377.0 L648,377.2 L672,378.5 L696,381.0 L720,384.5 L744,389.0 L768,394.1 L792,399.8 L816,405.8 L840,411.9 L864,417.8 L888,423.3 L912,428.4 L936,432.8 L960,436.5 L984,439.5 L1008,441.8 L1032,443.5 L1056,444.7 L1080,445.7 L1104,446.6 L1128,447.5 L1152,448.8 L1176,450.4 L1200,452.7 L1224,455.7 L1248,459.3 L1272,463.7 L1296,468.7 L1320,474.3 L1344,480.2 L1368,486.4 L1392,492.4 L1416,498.2 L1440,503.5" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,439.5 L24,439.7 L48,440.6 L72,442.2 L96,444.2 L120,446.6 L144,449.2 L168,451.8 L192,454.1 L216,456.0 L240,457.4 L264,458.2 L288,458.3 L312,457.8 L336,456.6 L360,455.0 L384,453.0 L408,450.9 L432,448.9 L456,447.2 L480,446.0 L504,445.6 L528,446.0 L552,447.4 L576,450.0 L600,453.7 L624,458.4 L648,464.2 L672,470.7 L696,478.0 L720,485.6 L744,493.4 L768,501.1 L792,508.5 L816,515.4 L840,521.5 L864,526.8 L888,531.1 L912,534.4 L936,536.7 L960,538.1 L984,538.8 L1008,538.9 L1032,538.6 L1056,538.1 L1080,537.7 L1104,537.4 L1128,537.5 L1152,538.1 L1176,539.2 L1200,541.0 L1224,543.4 L1248,546.3 L1272,549.5 L1296,553.0 L1320,556.5 L1344,559.8 L1368,562.8 L1392,565.2 L1416,566.9 L1440,567.7 L1440,612.8 L1416,613.6 L1392,613.6 L1368,613.0 L1344,611.8 L1320,610.0 L1296,607.7 L1272,605.3 L1248,602.7 L1224,600.3 L1200,598.2 L1176,596.6 L1152,595.7 L1128,595.4 L1104,595.9 L1080,597.2 L1056,599.2 L1032,601.7 L1008,604.6 L984,607.7 L960,610.8 L936,613.6 L912,616.0 L888,617.6 L864,618.4 L840,618.1 L816,616.6 L792,614.0 L768,610.3 L744,605.5 L720,599.8 L696,593.4 L672,586.4 L648,579.1 L624,571.8 L600,564.7 L576,557.9 L552,551.8 L528,546.5 L504,542.0 L480,538.4 L456,535.6 L432,533.6 L408,532.3 L384,531.5 L360,531.0 L336,530.6 L312,530.2 L288,529.5 L264,528.5 L240,526.8 L216,524.6 L192,521.8 L168,518.4 L144,514.4 L120,510.1 L96,505.6 L72,501.1 L48,496.8 L24,492.9 L0,489.6Z" fill="#f1dccf"/><path d="M0,439.5 L24,439.7 L48,440.6 L72,442.2 L96,444.2 L120,446.6 L144,449.2 L168,451.8 L192,454.1 L216,456.0 L240,457.4 L264,458.2 L288,458.3 L312,457.8 L336,456.6 L360,455.0 L384,453.0 L408,450.9 L432,448.9 L456,447.2 L480,446.0 L504,445.6 L528,446.0 L552,447.4 L576,450.0 L600,453.7 L624,458.4 L648,464.2 L672,470.7 L696,478.0 L720,485.6 L744,493.4 L768,501.1 L792,508.5 L816,515.4 L840,521.5 L864,526.8 L888,531.1 L912,534.4 L936,536.7 L960,538.1 L984,538.8 L1008,538.9 L1032,538.6 L1056,538.1 L1080,537.7 L1104,537.4 L1128,537.5 L1152,538.1 L1176,539.2 L1200,541.0 L1224,543.4 L1248,546.3 L1272,549.5 L1296,553.0 L1320,556.5 L1344,559.8 L1368,562.8 L1392,565.2 L1416,566.9 L1440,567.7 L1440,612.8 L1416,613.6 L1392,613.6 L1368,613.0 L1344,611.8 L1320,610.0 L1296,607.7 L1272,605.3 L1248,602.7 L1224,600.3 L1200,598.2 L1176,596.6 L1152,595.7 L1128,595.4 L1104,595.9 L1080,597.2 L1056,599.2 L1032,601.7 L1008,604.6 L984,607.7 L960,610.8 L936,613.6 L912,616.0 L888,617.6 L864,618.4 L840,618.1 L816,616.6 L792,614.0 L768,610.3 L744,605.5 L720,599.8 L696,593.4 L672,586.4 L648,579.1 L624,571.8 L600,564.7 L576,557.9 L552,551.8 L528,546.5 L504,542.0 L480,538.4 L456,535.6 L432,533.6 L408,532.3 L384,531.5 L360,531.0 L336,530.6 L312,530.2 L288,529.5 L264,528.5 L240,526.8 L216,524.6 L192,521.8 L168,518.4 L144,514.4 L120,510.1 L96,505.6 L72,501.1 L48,496.8 L24,492.9 L0,489.6Z" fill="url(#gran)" opacity=".30"/><path d="M0,439.5 L24,439.7 L48,440.6 L72,442.2 L96,444.2 L120,446.6 L144,449.2 L168,451.8 L192,454.1 L216,456.0 L240,457.4 L264,458.2 L288,458.3 L312,457.8 L336,456.6 L360,455.0 L384,453.0 L408,450.9 L432,448.9 L456,447.2 L480,446.0 L504,445.6 L528,446.0 L552,447.4 L576,450.0 L600,453.7 L624,458.4 L648,464.2 L672,470.7 L696,478.0 L720,485.6 L744,493.4 L768,501.1 L792,508.5 L816,515.4 L840,521.5 L864,526.8 L888,531.1 L912,534.4 L936,536.7 L960,538.1 L984,538.8 L1008,538.9 L1032,538.6 L1056,538.1 L1080,537.7 L1104,537.4 L1128,537.5 L1152,538.1 L1176,539.2 L1200,541.0 L1224,543.4 L1248,546.3 L1272,549.5 L1296,553.0 L1320,556.5 L1344,559.8 L1368,562.8 L1392,565.2 L1416,566.9 L1440,567.7" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,489.6 L24,492.9 L48,496.8 L72,501.1 L96,505.6 L120,510.1 L144,514.4 L168,518.4 L192,521.8 L216,524.6 L240,526.8 L264,528.5 L288,529.5 L312,530.2 L336,530.6 L360,531.0 L384,531.5 L408,532.3 L432,533.6 L456,535.6 L480,538.4 L504,542.0 L528,546.5 L552,551.8 L576,557.9 L600,564.7 L624,571.8 L648,579.1 L672,586.4 L696,593.4 L720,599.8 L744,605.5 L768,610.3 L792,614.0 L816,616.6 L840,618.1 L864,618.4 L888,617.6 L912,616.0 L936,613.6 L960,610.8 L984,607.7 L1008,604.6 L1032,601.7 L1056,599.2 L1080,597.2 L1104,595.9 L1128,595.4 L1152,595.7 L1176,596.6 L1200,598.2 L1224,600.3 L1248,602.7 L1272,605.3 L1296,607.7 L1320,610.0 L1344,611.8 L1368,613.0 L1392,613.6 L1416,613.6 L1440,612.8 L1440,682.7 L1416,682.2 L1392,681.4 L1368,680.0 L1344,678.0 L1320,675.4 L1296,672.2 L1272,668.5 L1248,664.4 L1224,660.1 L1200,655.8 L1176,651.7 L1152,648.0 L1128,644.9 L1104,642.6 L1080,641.1 L1056,640.7 L1032,641.4 L1008,643.0 L984,645.6 L960,648.9 L936,652.9 L912,657.3 L888,661.8 L864,666.3 L840,670.4 L816,673.9 L792,676.6 L768,678.5 L744,679.2 L720,678.9 L696,677.6 L672,675.2 L648,671.9 L624,667.9 L600,663.3 L576,658.4 L552,653.5 L528,648.6 L504,644.0 L480,639.9 L456,636.4 L432,633.4 L408,631.2 L384,629.5 L360,628.3 L336,627.5 L312,626.9 L288,626.2 L264,625.4 L240,624.3 L216,622.5 L192,620.1 L168,616.9 L144,612.9 L120,608.0 L96,602.4 L72,596.2 L48,589.4 L24,582.5 L0,575.4Z" fill="#dce8e6"/><path d="M0,489.6 L24,492.9 L48,496.8 L72,501.1 L96,505.6 L120,510.1 L144,514.4 L168,518.4 L192,521.8 L216,524.6 L240,526.8 L264,528.5 L288,529.5 L312,530.2 L336,530.6 L360,531.0 L384,531.5 L408,532.3 L432,533.6 L456,535.6 L480,538.4 L504,542.0 L528,546.5 L552,551.8 L576,557.9 L600,564.7 L624,571.8 L648,579.1 L672,586.4 L696,593.4 L720,599.8 L744,605.5 L768,610.3 L792,614.0 L816,616.6 L840,618.1 L864,618.4 L888,617.6 L912,616.0 L936,613.6 L960,610.8 L984,607.7 L1008,604.6 L1032,601.7 L1056,599.2 L1080,597.2 L1104,595.9 L1128,595.4 L1152,595.7 L1176,596.6 L1200,598.2 L1224,600.3 L1248,602.7 L1272,605.3 L1296,607.7 L1320,610.0 L1344,611.8 L1368,613.0 L1392,613.6 L1416,613.6 L1440,612.8 L1440,682.7 L1416,682.2 L1392,681.4 L1368,680.0 L1344,678.0 L1320,675.4 L1296,672.2 L1272,668.5 L1248,664.4 L1224,660.1 L1200,655.8 L1176,651.7 L1152,648.0 L1128,644.9 L1104,642.6 L1080,641.1 L1056,640.7 L1032,641.4 L1008,643.0 L984,645.6 L960,648.9 L936,652.9 L912,657.3 L888,661.8 L864,666.3 L840,670.4 L816,673.9 L792,676.6 L768,678.5 L744,679.2 L720,678.9 L696,677.6 L672,675.2 L648,671.9 L624,667.9 L600,663.3 L576,658.4 L552,653.5 L528,648.6 L504,644.0 L480,639.9 L456,636.4 L432,633.4 L408,631.2 L384,629.5 L360,628.3 L336,627.5 L312,626.9 L288,626.2 L264,625.4 L240,624.3 L216,622.5 L192,620.1 L168,616.9 L144,612.9 L120,608.0 L96,602.4 L72,596.2 L48,589.4 L24,582.5 L0,575.4Z" fill="url(#ore)" opacity=".30"/><path d="M0,489.6 L24,492.9 L48,496.8 L72,501.1 L96,505.6 L120,510.1 L144,514.4 L168,518.4 L192,521.8 L216,524.6 L240,526.8 L264,528.5 L288,529.5 L312,530.2 L336,530.6 L360,531.0 L384,531.5 L408,532.3 L432,533.6 L456,535.6 L480,538.4 L504,542.0 L528,546.5 L552,551.8 L576,557.9 L600,564.7 L624,571.8 L648,579.1 L672,586.4 L696,593.4 L720,599.8 L744,605.5 L768,610.3 L792,614.0 L816,616.6 L840,618.1 L864,618.4 L888,617.6 L912,616.0 L936,613.6 L960,610.8 L984,607.7 L1008,604.6 L1032,601.7 L1056,599.2 L1080,597.2 L1104,595.9 L1128,595.4 L1152,595.7 L1176,596.6 L1200,598.2 L1224,600.3 L1248,602.7 L1272,605.3 L1296,607.7 L1320,610.0 L1344,611.8 L1368,613.0 L1392,613.6 L1416,613.6 L1440,612.8" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,575.4 L24,582.5 L48,589.4 L72,596.2 L96,602.4 L120,608.0 L144,612.9 L168,616.9 L192,620.1 L216,622.5 L240,624.3 L264,625.4 L288,626.2 L312,626.9 L336,627.5 L360,628.3 L384,629.5 L408,631.2 L432,633.4 L456,636.4 L480,639.9 L504,644.0 L528,648.6 L552,653.5 L576,658.4 L600,663.3 L624,667.9 L648,671.9 L672,675.2 L696,677.6 L720,678.9 L744,679.2 L768,678.5 L792,676.6 L816,673.9 L840,670.4 L864,666.3 L888,661.8 L912,657.3 L936,652.9 L960,648.9 L984,645.6 L1008,643.0 L1032,641.4 L1056,640.7 L1080,641.1 L1104,642.6 L1128,644.9 L1152,648.0 L1176,651.7 L1200,655.8 L1224,660.1 L1248,664.4 L1272,668.5 L1296,672.2 L1320,675.4 L1344,678.0 L1368,680.0 L1392,681.4 L1416,682.2 L1440,682.7 L1440,778.9 L1416,778.2 L1392,777.3 L1368,776.1 L1344,774.4 L1320,772.0 L1296,768.8 L1272,764.9 L1248,760.1 L1224,754.6 L1200,748.5 L1176,741.9 L1152,735.1 L1128,728.2 L1104,721.6 L1080,715.3 L1056,709.8 L1032,705.1 L1008,701.5 L984,698.9 L960,697.6 L936,697.3 L912,698.2 L888,700.0 L864,702.7 L840,705.9 L816,709.4 L792,713.1 L768,716.6 L744,719.8 L720,722.4 L696,724.3 L672,725.5 L648,725.8 L624,725.3 L600,724.1 L576,722.2 L552,719.9 L528,717.3 L504,714.5 L480,711.8 L456,709.5 L432,707.5 L408,706.1 L384,705.3 L360,705.2 L336,705.6 L312,706.6 L288,708.0 L264,709.6 L240,711.3 L216,712.7 L192,713.8 L168,714.2 L144,713.8 L120,712.5 L96,710.1 L72,706.6 L48,702.1 L24,696.5 L0,690.1Z" fill="#ebe5d4"/><path d="M0,575.4 L24,582.5 L48,589.4 L72,596.2 L96,602.4 L120,608.0 L144,612.9 L168,616.9 L192,620.1 L216,622.5 L240,624.3 L264,625.4 L288,626.2 L312,626.9 L336,627.5 L360,628.3 L384,629.5 L408,631.2 L432,633.4 L456,636.4 L480,639.9 L504,644.0 L528,648.6 L552,653.5 L576,658.4 L600,663.3 L624,667.9 L648,671.9 L672,675.2 L696,677.6 L720,678.9 L744,679.2 L768,678.5 L792,676.6 L816,673.9 L840,670.4 L864,666.3 L888,661.8 L912,657.3 L936,652.9 L960,648.9 L984,645.6 L1008,643.0 L1032,641.4 L1056,640.7 L1080,641.1 L1104,642.6 L1128,644.9 L1152,648.0 L1176,651.7 L1200,655.8 L1224,660.1 L1248,664.4 L1272,668.5 L1296,672.2 L1320,675.4 L1344,678.0 L1368,680.0 L1392,681.4 L1416,682.2 L1440,682.7 L1440,778.9 L1416,778.2 L1392,777.3 L1368,776.1 L1344,774.4 L1320,772.0 L1296,768.8 L1272,764.9 L1248,760.1 L1224,754.6 L1200,748.5 L1176,741.9 L1152,735.1 L1128,728.2 L1104,721.6 L1080,715.3 L1056,709.8 L1032,705.1 L1008,701.5 L984,698.9 L960,697.6 L936,697.3 L912,698.2 L888,700.0 L864,702.7 L840,705.9 L816,709.4 L792,713.1 L768,716.6 L744,719.8 L720,722.4 L696,724.3 L672,725.5 L648,725.8 L624,725.3 L600,724.1 L576,722.2 L552,719.9 L528,717.3 L504,714.5 L480,711.8 L456,709.5 L432,707.5 L408,706.1 L384,705.3 L360,705.2 L336,705.6 L312,706.6 L288,708.0 L264,709.6 L240,711.3 L216,712.7 L192,713.8 L168,714.2 L144,713.8 L120,712.5 L96,710.1 L72,706.6 L48,702.1 L24,696.5 L0,690.1Z" fill="url(#lime)" opacity=".30"/><path d="M0,575.4 L24,582.5 L48,589.4 L72,596.2 L96,602.4 L120,608.0 L144,612.9 L168,616.9 L192,620.1 L216,622.5 L240,624.3 L264,625.4 L288,626.2 L312,626.9 L336,627.5 L360,628.3 L384,629.5 L408,631.2 L432,633.4 L456,636.4 L480,639.9 L504,644.0 L528,648.6 L552,653.5 L576,658.4 L600,663.3 L624,667.9 L648,671.9 L672,675.2 L696,677.6 L720,678.9 L744,679.2 L768,678.5 L792,676.6 L816,673.9 L840,670.4 L864,666.3 L888,661.8 L912,657.3 L936,652.9 L960,648.9 L984,645.6 L1008,643.0 L1032,641.4 L1056,640.7 L1080,641.1 L1104,642.6 L1128,644.9 L1152,648.0 L1176,651.7 L1200,655.8 L1224,660.1 L1248,664.4 L1272,668.5 L1296,672.2 L1320,675.4 L1344,678.0 L1368,680.0 L1392,681.4 L1416,682.2 L1440,682.7" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,690.1 L24,696.5 L48,702.1 L72,706.6 L96,710.1 L120,712.5 L144,713.8 L168,714.2 L192,713.8 L216,712.7 L240,711.3 L264,709.6 L288,708.0 L312,706.6 L336,705.6 L360,705.2 L384,705.3 L408,706.1 L432,707.5 L456,709.5 L480,711.8 L504,714.5 L528,717.3 L552,719.9 L576,722.2 L600,724.1 L624,725.3 L648,725.8 L672,725.5 L696,724.3 L720,722.4 L744,719.8 L768,716.6 L792,713.1 L816,709.4 L840,705.9 L864,702.7 L888,700.0 L912,698.2 L936,697.3 L960,697.6 L984,698.9 L1008,701.5 L1032,705.1 L1056,709.8 L1080,715.3 L1104,721.6 L1128,728.2 L1152,735.1 L1176,741.9 L1200,748.5 L1224,754.6 L1248,760.1 L1272,764.9 L1296,768.8 L1320,772.0 L1344,774.4 L1368,776.1 L1392,777.3 L1416,778.2 L1440,778.9 L1440,860.9 L1416,862.0 L1392,863.4 L1368,864.9 L1344,866.1 L1320,866.9 L1296,867.2 L1272,866.6 L1248,865.1 L1224,862.6 L1200,859.0 L1176,854.4 L1152,848.8 L1128,842.3 L1104,835.1 L1080,827.4 L1056,819.5 L1032,811.7 L1008,804.1 L984,797.0 L960,790.6 L936,785.0 L912,780.5 L888,777.0 L864,774.6 L840,773.1 L816,772.5 L792,772.7 L768,773.4 L744,774.4 L720,775.5 L696,776.6 L672,777.3 L648,777.7 L624,777.5 L600,776.7 L576,775.2 L552,773.2 L528,770.7 L504,767.9 L480,764.9 L456,761.9 L432,759.1 L408,756.7 L384,754.9 L360,753.8 L336,753.6 L312,754.2 L288,755.7 L264,758.0 L240,761.0 L216,764.6 L192,768.5 L168,772.4 L144,776.3 L120,779.8 L96,782.6 L72,784.7 L48,785.7 L24,785.7 L0,784.5Z" fill="#e5e0ef"/><path d="M0,690.1 L24,696.5 L48,702.1 L72,706.6 L96,710.1 L120,712.5 L144,713.8 L168,714.2 L192,713.8 L216,712.7 L240,711.3 L264,709.6 L288,708.0 L312,706.6 L336,705.6 L360,705.2 L384,705.3 L408,706.1 L432,707.5 L456,709.5 L480,711.8 L504,714.5 L528,717.3 L552,719.9 L576,722.2 L600,724.1 L624,725.3 L648,725.8 L672,725.5 L696,724.3 L720,722.4 L744,719.8 L768,716.6 L792,713.1 L816,709.4 L840,705.9 L864,702.7 L888,700.0 L912,698.2 L936,697.3 L960,697.6 L984,698.9 L1008,701.5 L1032,705.1 L1056,709.8 L1080,715.3 L1104,721.6 L1128,728.2 L1152,735.1 L1176,741.9 L1200,748.5 L1224,754.6 L1248,760.1 L1272,764.9 L1296,768.8 L1320,772.0 L1344,774.4 L1368,776.1 L1392,777.3 L1416,778.2 L1440,778.9 L1440,860.9 L1416,862.0 L1392,863.4 L1368,864.9 L1344,866.1 L1320,866.9 L1296,867.2 L1272,866.6 L1248,865.1 L1224,862.6 L1200,859.0 L1176,854.4 L1152,848.8 L1128,842.3 L1104,835.1 L1080,827.4 L1056,819.5 L1032,811.7 L1008,804.1 L984,797.0 L960,790.6 L936,785.0 L912,780.5 L888,777.0 L864,774.6 L840,773.1 L816,772.5 L792,772.7 L768,773.4 L744,774.4 L720,775.5 L696,776.6 L672,777.3 L648,777.7 L624,777.5 L600,776.7 L576,775.2 L552,773.2 L528,770.7 L504,767.9 L480,764.9 L456,761.9 L432,759.1 L408,756.7 L384,754.9 L360,753.8 L336,753.6 L312,754.2 L288,755.7 L264,758.0 L240,761.0 L216,764.6 L192,768.5 L168,772.4 L144,776.3 L120,779.8 L96,782.6 L72,784.7 L48,785.7 L24,785.7 L0,784.5Z" fill="url(#shale)" opacity=".30"/><path d="M0,690.1 L24,696.5 L48,702.1 L72,706.6 L96,710.1 L120,712.5 L144,713.8 L168,714.2 L192,713.8 L216,712.7 L240,711.3 L264,709.6 L288,708.0 L312,706.6 L336,705.6 L360,705.2 L384,705.3 L408,706.1 L432,707.5 L456,709.5 L480,711.8 L504,714.5 L528,717.3 L552,719.9 L576,722.2 L600,724.1 L624,725.3 L648,725.8 L672,725.5 L696,724.3 L720,722.4 L744,719.8 L768,716.6 L792,713.1 L816,709.4 L840,705.9 L864,702.7 L888,700.0 L912,698.2 L936,697.3 L960,697.6 L984,698.9 L1008,701.5 L1032,705.1 L1056,709.8 L1080,715.3 L1104,721.6 L1128,728.2 L1152,735.1 L1176,741.9 L1200,748.5 L1224,754.6 L1248,760.1 L1272,764.9 L1296,768.8 L1320,772.0 L1344,774.4 L1368,776.1 L1392,777.3 L1416,778.2 L1440,778.9" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,784.5 L24,785.7 L48,785.7 L72,784.7 L96,782.6 L120,779.8 L144,776.3 L168,772.4 L192,768.5 L216,764.6 L240,761.0 L264,758.0 L288,755.7 L312,754.2 L336,753.6 L360,753.8 L384,754.9 L408,756.7 L432,759.1 L456,761.9 L480,764.9 L504,767.9 L528,770.7 L552,773.2 L576,775.2 L600,776.7 L624,777.5 L648,777.7 L672,777.3 L696,776.6 L720,775.5 L744,774.4 L768,773.4 L792,772.7 L816,772.5 L840,773.1 L864,774.6 L888,777.0 L912,780.5 L936,785.0 L960,790.6 L984,797.0 L1008,804.1 L1032,811.7 L1056,819.5 L1080,827.4 L1104,835.1 L1128,842.3 L1152,848.8 L1176,854.4 L1200,859.0 L1224,862.6 L1248,865.1 L1272,866.6 L1296,867.2 L1320,866.9 L1344,866.1 L1368,864.9 L1392,863.4 L1416,862.0 L1440,860.9 L1440,910.2 L1416,911.6 L1392,913.9 L1368,916.8 L1344,920.2 L1320,924.0 L1296,927.9 L1272,931.6 L1248,934.9 L1224,937.6 L1200,939.4 L1176,940.3 L1152,940.1 L1128,938.7 L1104,936.2 L1080,932.5 L1056,927.9 L1032,922.4 L1008,916.4 L984,909.9 L960,903.2 L936,896.7 L912,890.4 L888,884.6 L864,879.4 L840,875.0 L816,871.3 L792,868.5 L768,866.3 L744,864.7 L720,863.6 L696,862.7 L672,861.9 L648,861.0 L624,859.8 L600,858.2 L576,856.0 L552,853.1 L528,849.5 L504,845.3 L480,840.6 L456,835.4 L432,830.0 L408,824.5 L384,819.1 L360,814.2 L336,809.9 L312,806.4 L288,803.8 L264,802.3 L240,801.9 L216,802.6 L192,804.4 L168,807.1 L144,810.6 L120,814.6 L96,819.0 L72,823.4 L48,827.7 L24,831.5 L0,834.8Z" fill="#efe2c0"/><path d="M0,784.5 L24,785.7 L48,785.7 L72,784.7 L96,782.6 L120,779.8 L144,776.3 L168,772.4 L192,768.5 L216,764.6 L240,761.0 L264,758.0 L288,755.7 L312,754.2 L336,753.6 L360,753.8 L384,754.9 L408,756.7 L432,759.1 L456,761.9 L480,764.9 L504,767.9 L528,770.7 L552,773.2 L576,775.2 L600,776.7 L624,777.5 L648,777.7 L672,777.3 L696,776.6 L720,775.5 L744,774.4 L768,773.4 L792,772.7 L816,772.5 L840,773.1 L864,774.6 L888,777.0 L912,780.5 L936,785.0 L960,790.6 L984,797.0 L1008,804.1 L1032,811.7 L1056,819.5 L1080,827.4 L1104,835.1 L1128,842.3 L1152,848.8 L1176,854.4 L1200,859.0 L1224,862.6 L1248,865.1 L1272,866.6 L1296,867.2 L1320,866.9 L1344,866.1 L1368,864.9 L1392,863.4 L1416,862.0 L1440,860.9 L1440,910.2 L1416,911.6 L1392,913.9 L1368,916.8 L1344,920.2 L1320,924.0 L1296,927.9 L1272,931.6 L1248,934.9 L1224,937.6 L1200,939.4 L1176,940.3 L1152,940.1 L1128,938.7 L1104,936.2 L1080,932.5 L1056,927.9 L1032,922.4 L1008,916.4 L984,909.9 L960,903.2 L936,896.7 L912,890.4 L888,884.6 L864,879.4 L840,875.0 L816,871.3 L792,868.5 L768,866.3 L744,864.7 L720,863.6 L696,862.7 L672,861.9 L648,861.0 L624,859.8 L600,858.2 L576,856.0 L552,853.1 L528,849.5 L504,845.3 L480,840.6 L456,835.4 L432,830.0 L408,824.5 L384,819.1 L360,814.2 L336,809.9 L312,806.4 L288,803.8 L264,802.3 L240,801.9 L216,802.6 L192,804.4 L168,807.1 L144,810.6 L120,814.6 L96,819.0 L72,823.4 L48,827.7 L24,831.5 L0,834.8Z" fill="url(#sand)" opacity=".30"/><path d="M0,784.5 L24,785.7 L48,785.7 L72,784.7 L96,782.6 L120,779.8 L144,776.3 L168,772.4 L192,768.5 L216,764.6 L240,761.0 L264,758.0 L288,755.7 L312,754.2 L336,753.6 L360,753.8 L384,754.9 L408,756.7 L432,759.1 L456,761.9 L480,764.9 L504,767.9 L528,770.7 L552,773.2 L576,775.2 L600,776.7 L624,777.5 L648,777.7 L672,777.3 L696,776.6 L720,775.5 L744,774.4 L768,773.4 L792,772.7 L816,772.5 L840,773.1 L864,774.6 L888,777.0 L912,780.5 L936,785.0 L960,790.6 L984,797.0 L1008,804.1 L1032,811.7 L1056,819.5 L1080,827.4 L1104,835.1 L1128,842.3 L1152,848.8 L1176,854.4 L1200,859.0 L1224,862.6 L1248,865.1 L1272,866.6 L1296,867.2 L1320,866.9 L1344,866.1 L1368,864.9 L1392,863.4 L1416,862.0 L1440,860.9" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,834.8 L24,831.5 L48,827.7 L72,823.4 L96,819.0 L120,814.6 L144,810.6 L168,807.1 L192,804.4 L216,802.6 L240,801.9 L264,802.3 L288,803.8 L312,806.4 L336,809.9 L360,814.2 L384,819.1 L408,824.5 L432,830.0 L456,835.4 L480,840.6 L504,845.3 L528,849.5 L552,853.1 L576,856.0 L600,858.2 L624,859.8 L648,861.0 L672,861.9 L696,862.7 L720,863.6 L744,864.7 L768,866.3 L792,868.5 L816,871.3 L840,875.0 L864,879.4 L888,884.6 L912,890.4 L936,896.7 L960,903.2 L984,909.9 L1008,916.4 L1032,922.4 L1056,927.9 L1080,932.5 L1104,936.2 L1128,938.7 L1152,940.1 L1176,940.3 L1200,939.4 L1224,937.6 L1248,934.9 L1272,931.6 L1296,927.9 L1320,924.0 L1344,920.2 L1368,916.8 L1392,913.9 L1416,911.6 L1440,910.2 L1440,961.1 L1416,958.7 L1392,957.4 L1368,957.1 L1344,958.0 L1320,959.9 L1296,962.7 L1272,966.3 L1248,970.4 L1224,974.8 L1200,979.3 L1176,983.6 L1152,987.5 L1128,990.7 L1104,993.1 L1080,994.6 L1056,995.1 L1032,994.6 L1008,993.1 L984,990.8 L960,987.7 L936,984.1 L912,980.2 L888,976.2 L864,972.2 L840,968.5 L816,965.3 L792,962.5 L768,960.4 L744,958.9 L720,957.9 L696,957.4 L672,957.2 L648,957.2 L624,957.2 L600,957.0 L576,956.3 L552,955.0 L528,952.9 L504,950.0 L480,946.2 L456,941.4 L432,935.7 L408,929.3 L384,922.3 L360,914.9 L336,907.3 L312,899.8 L288,892.6 L264,885.9 L240,880.0 L216,875.1 L192,871.2 L168,868.5 L144,866.9 L120,866.4 L96,866.9 L72,868.2 L48,870.2 L24,872.7 L0,875.3Z" fill="#e2ebdc"/><path d="M0,834.8 L24,831.5 L48,827.7 L72,823.4 L96,819.0 L120,814.6 L144,810.6 L168,807.1 L192,804.4 L216,802.6 L240,801.9 L264,802.3 L288,803.8 L312,806.4 L336,809.9 L360,814.2 L384,819.1 L408,824.5 L432,830.0 L456,835.4 L480,840.6 L504,845.3 L528,849.5 L552,853.1 L576,856.0 L600,858.2 L624,859.8 L648,861.0 L672,861.9 L696,862.7 L720,863.6 L744,864.7 L768,866.3 L792,868.5 L816,871.3 L840,875.0 L864,879.4 L888,884.6 L912,890.4 L936,896.7 L960,903.2 L984,909.9 L1008,916.4 L1032,922.4 L1056,927.9 L1080,932.5 L1104,936.2 L1128,938.7 L1152,940.1 L1176,940.3 L1200,939.4 L1224,937.6 L1248,934.9 L1272,931.6 L1296,927.9 L1320,924.0 L1344,920.2 L1368,916.8 L1392,913.9 L1416,911.6 L1440,910.2 L1440,961.1 L1416,958.7 L1392,957.4 L1368,957.1 L1344,958.0 L1320,959.9 L1296,962.7 L1272,966.3 L1248,970.4 L1224,974.8 L1200,979.3 L1176,983.6 L1152,987.5 L1128,990.7 L1104,993.1 L1080,994.6 L1056,995.1 L1032,994.6 L1008,993.1 L984,990.8 L960,987.7 L936,984.1 L912,980.2 L888,976.2 L864,972.2 L840,968.5 L816,965.3 L792,962.5 L768,960.4 L744,958.9 L720,957.9 L696,957.4 L672,957.2 L648,957.2 L624,957.2 L600,957.0 L576,956.3 L552,955.0 L528,952.9 L504,950.0 L480,946.2 L456,941.4 L432,935.7 L408,929.3 L384,922.3 L360,914.9 L336,907.3 L312,899.8 L288,892.6 L264,885.9 L240,880.0 L216,875.1 L192,871.2 L168,868.5 L144,866.9 L120,866.4 L96,866.9 L72,868.2 L48,870.2 L24,872.7 L0,875.3Z" fill="url(#grav)" opacity=".30"/><path d="M0,834.8 L24,831.5 L48,827.7 L72,823.4 L96,819.0 L120,814.6 L144,810.6 L168,807.1 L192,804.4 L216,802.6 L240,801.9 L264,802.3 L288,803.8 L312,806.4 L336,809.9 L360,814.2 L384,819.1 L408,824.5 L432,830.0 L456,835.4 L480,840.6 L504,845.3 L528,849.5 L552,853.1 L576,856.0 L600,858.2 L624,859.8 L648,861.0 L672,861.9 L696,862.7 L720,863.6 L744,864.7 L768,866.3 L792,868.5 L816,871.3 L840,875.0 L864,879.4 L888,884.6 L912,890.4 L936,896.7 L960,903.2 L984,909.9 L1008,916.4 L1032,922.4 L1056,927.9 L1080,932.5 L1104,936.2 L1128,938.7 L1152,940.1 L1176,940.3 L1200,939.4 L1224,937.6 L1248,934.9 L1272,931.6 L1296,927.9 L1320,924.0 L1344,920.2 L1368,916.8 L1392,913.9 L1416,911.6 L1440,910.2" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M0,875.3 L24,872.7 L48,870.2 L72,868.2 L96,866.9 L120,866.4 L144,866.9 L168,868.5 L192,871.2 L216,875.1 L240,880.0 L264,885.9 L288,892.6 L312,899.8 L336,907.3 L360,914.9 L384,922.3 L408,929.3 L432,935.7 L456,941.4 L480,946.2 L504,950.0 L528,952.9 L552,955.0 L576,956.3 L600,957.0 L624,957.2 L648,957.2 L672,957.2 L696,957.4 L720,957.9 L744,958.9 L768,960.4 L792,962.5 L816,965.3 L840,968.5 L864,972.2 L888,976.2 L912,980.2 L936,984.1 L960,987.7 L984,990.8 L1008,993.1 L1032,994.6 L1056,995.1 L1080,994.6 L1104,993.1 L1128,990.7 L1152,987.5 L1176,983.6 L1200,979.3 L1224,974.8 L1248,970.4 L1272,966.3 L1296,962.7 L1320,959.9 L1344,958.0 L1368,957.1 L1392,957.4 L1416,958.7 L1440,961.1 L1440,1052.2 L1416,1045.1 L1392,1038.6 L1368,1032.9 L1344,1028.1 L1320,1024.4 L1296,1021.8 L1272,1020.4 L1248,1020.1 L1224,1020.8 L1200,1022.3 L1176,1024.5 L1152,1027.2 L1128,1030.0 L1104,1032.8 L1080,1035.4 L1056,1037.6 L1032,1039.2 L1008,1040.1 L984,1040.2 L960,1039.7 L936,1038.4 L912,1036.7 L888,1034.5 L864,1032.0 L840,1029.5 L816,1027.2 L792,1025.1 L768,1023.6 L744,1022.7 L720,1022.4 L696,1022.9 L672,1024.0 L648,1025.8 L624,1028.0 L600,1030.5 L576,1033.1 L552,1035.6 L528,1037.7 L504,1039.2 L480,1039.9 L456,1039.7 L432,1038.4 L408,1036.0 L384,1032.4 L360,1027.8 L336,1022.1 L312,1015.7 L288,1008.6 L264,1001.1 L240,993.5 L216,985.9 L192,978.7 L168,972.1 L144,966.2 L120,961.1 L96,957.0 L72,953.8 L48,951.5 L24,950.0 L0,949.1Z" fill="#f0d8cc"/><path d="M0,875.3 L24,872.7 L48,870.2 L72,868.2 L96,866.9 L120,866.4 L144,866.9 L168,868.5 L192,871.2 L216,875.1 L240,880.0 L264,885.9 L288,892.6 L312,899.8 L336,907.3 L360,914.9 L384,922.3 L408,929.3 L432,935.7 L456,941.4 L480,946.2 L504,950.0 L528,952.9 L552,955.0 L576,956.3 L600,957.0 L624,957.2 L648,957.2 L672,957.2 L696,957.4 L720,957.9 L744,958.9 L768,960.4 L792,962.5 L816,965.3 L840,968.5 L864,972.2 L888,976.2 L912,980.2 L936,984.1 L960,987.7 L984,990.8 L1008,993.1 L1032,994.6 L1056,995.1 L1080,994.6 L1104,993.1 L1128,990.7 L1152,987.5 L1176,983.6 L1200,979.3 L1224,974.8 L1248,970.4 L1272,966.3 L1296,962.7 L1320,959.9 L1344,958.0 L1368,957.1 L1392,957.4 L1416,958.7 L1440,961.1 L1440,1052.2 L1416,1045.1 L1392,1038.6 L1368,1032.9 L1344,1028.1 L1320,1024.4 L1296,1021.8 L1272,1020.4 L1248,1020.1 L1224,1020.8 L1200,1022.3 L1176,1024.5 L1152,1027.2 L1128,1030.0 L1104,1032.8 L1080,1035.4 L1056,1037.6 L1032,1039.2 L1008,1040.1 L984,1040.2 L960,1039.7 L936,1038.4 L912,1036.7 L888,1034.5 L864,1032.0 L840,1029.5 L816,1027.2 L792,1025.1 L768,1023.6 L744,1022.7 L720,1022.4 L696,1022.9 L672,1024.0 L648,1025.8 L624,1028.0 L600,1030.5 L576,1033.1 L552,1035.6 L528,1037.7 L504,1039.2 L480,1039.9 L456,1039.7 L432,1038.4 L408,1036.0 L384,1032.4 L360,1027.8 L336,1022.1 L312,1015.7 L288,1008.6 L264,1001.1 L240,993.5 L216,985.9 L192,978.7 L168,972.1 L144,966.2 L120,961.1 L96,957.0 L72,953.8 L48,951.5 L24,950.0 L0,949.1Z" fill="url(#gran)" opacity=".30"/><path d="M0,875.3 L24,872.7 L48,870.2 L72,868.2 L96,866.9 L120,866.4 L144,866.9 L168,868.5 L192,871.2 L216,875.1 L240,880.0 L264,885.9 L288,892.6 L312,899.8 L336,907.3 L360,914.9 L384,922.3 L408,929.3 L432,935.7 L456,941.4 L480,946.2 L504,950.0 L528,952.9 L552,955.0 L576,956.3 L600,957.0 L624,957.2 L648,957.2 L672,957.2 L696,957.4 L720,957.9 L744,958.9 L768,960.4 L792,962.5 L816,965.3 L840,968.5 L864,972.2 L888,976.2 L912,980.2 L936,984.1 L960,987.7 L984,990.8 L1008,993.1 L1032,994.6 L1056,995.1 L1080,994.6 L1104,993.1 L1128,990.7 L1152,987.5 L1176,983.6 L1200,979.3 L1224,974.8 L1248,970.4 L1272,966.3 L1296,962.7 L1320,959.9 L1344,958.0 L1368,957.1 L1392,957.4 L1416,958.7 L1440,961.1" fill="none" stroke="#6b5a45" stroke-width="1.2" opacity=".28"/><path d="M1010,-20 L760,1020" stroke="#7a4a32" stroke-width="2.2" stroke-dasharray="14 8" opacity=".25" fill="none"/></svg></div>
+<!-- lithology fill patterns, reused as section keys -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <pattern id="sand" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#f1dca8"/><circle cx="2" cy="2" r="1" fill="#a9822f"/><circle cx="6" cy="6" r="1" fill="#a9822f"/></pattern>
+ <pattern id="lime" width="12" height="8" patternUnits="userSpaceOnUse"><rect width="12" height="8" fill="#dfe8de"/><path d="M0 4h12M6 0v4M0 4v4M12 4v4" stroke="#5d7a63" stroke-width=".8" fill="none"/></pattern>
+ <pattern id="shale" width="10" height="6" patternUnits="userSpaceOnUse"><rect width="10" height="6" fill="#d6d1e6"/><path d="M0 3h10" stroke="#6c5f98" stroke-width="1"/></pattern>
+ <pattern id="gran" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#f0c9b8"/><path d="M5 2v6M2 5h6" stroke="#a24f2d" stroke-width="1"/></pattern>
+ <pattern id="ore" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#c9dedd"/><path d="M0 10L10 0M-2 2L2-2M8 12L12 8" stroke="#2d6f74" stroke-width="1"/></pattern>
+ <pattern id="grav" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#dde3cf"/><circle cx="3" cy="3" r="2" fill="none" stroke="#6f8a4f"/><circle cx="9" cy="9" r="2.4" fill="none" stroke="#6f8a4f"/></pattern>
+</defs></svg>
+
+<div class="layout">
+<nav class="rail" aria-label="Sections">
+  <b>Banani Jana</b>
+  <ol>
+    <li><a href="#top"><svg><rect width="100%" height="100%" fill="url(#sand)"/></svg>Intro</a></li>
+    <li><a href="#about"><svg><rect width="100%" height="100%" fill="url(#lime)"/></svg>About</a></li>
+    <li><a href="#experience"><svg><rect width="100%" height="100%" fill="url(#gran)"/></svg>Experience</a></li>
+    <li><a href="#projects"><svg><rect width="100%" height="100%" fill="url(#ore)"/></svg>Projects</a></li>
+    <li><a href="#publications"><svg><rect width="100%" height="100%" fill="url(#shale)"/></svg>Publications</a></li>
+    <li><a href="#skills"><svg><rect width="100%" height="100%" fill="url(#grav)"/></svg>Skills</a></li>
+    <li><a href="#learning"><svg><rect width="100%" height="100%" fill="url(#sand)"/></svg>Learning</a></li>
+    <li><a href="#contact"><svg><rect width="100%" height="100%" fill="url(#lime)"/></svg>Contact</a></li>
+  </ol>
+</nav>
+
+<main id="top">
+<header class="hero">
+  <h1>Reading the Earth, <em>layer by layer</em></h1>
+  <p class="role">Mineral Exploration | Mineral Resource Estimation | AutoCAD | Remote Sensing &amp; GIS | Geological Modelling | Technical Reporting | Python</p>
+  <p class="lead">I am Banani Jana, a geologist focused on mineral exploration and resource estimation, combining field-based geological understanding with AutoCAD, remote sensing and GIS, geological modelling, Python, and technical reporting.</p>
+<div class="btns">
+      <a class="btn pri" href="Banani_Jana_CV.pdf" download="Banani_Jana_CV.pdf">Download CV</a>
+    <a class="btn pri" href="#contact">Get in touch</a>
+    <a class="btn" href="#projects">See my projects</a>
+    <a class="btn" href="https://www.linkedin.com/in/banani-2002-jana/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</header>
+
+<section id="about">
+  <div class="hd"><svg><rect width="100%" height="100%" fill="url(#lime)"/></svg><h2>About</h2></div>
+  <div class="two about-layout">
+    <div>
+      <p>I am a geology graduate with an M.Sc. in Applied Geology from Presidency University, Kolkata. I started with field mapping in West Bengal and Jharkhand, and grew into mineral exploration, remote sensing and geospatial modelling.</p>
+      <p>Since August 2026 I have been a Junior Geologist at Shanvi Resources in Bhubaneswar, working on exploration, borehole correlation, cross-sections and resource estimation.</p>
+      <p>My interests centre on mineral exploration and resource estimation, supported by geological interpretation, remote sensing and GIS, AutoCAD, Python-based analysis, geological modelling, and clear technical reporting.</p>
+    </div>
+    <div class="facts">
+      <div><span>Based in</span><span>Kolkata, India</span></div>
+      <div><span>Working in</span><span>Bhubaneswar, Odisha</span></div>
+      <div><span>Degree</span><span>M.Sc. Applied Geology</span></div>
+      <div><span>Interests</span><span>Ore geology, hydrogeology, geophysics</span></div>
+      <div><span>Languages</span><span>Bengali, English, Hindi</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="hd"><svg><rect width="100%" height="100%" fill="url(#gran)"/></svg><h2>Experience</h2></div>
+  <div class="col">
+    <div class="unit now"><time>Aug 2026 – present</time><h3>Jr. Geologist</h3><div class="org">Shanvi Resources · Bhubaneswar, Odisha</div>
+      <p>Full-time, on site. Mineral exploration, mineral resource estimation, borehole correlation, geological cross-sections, geophysical data processing and technical reports.</p>
+      <div class="chips"><span class="chip">AutoCAD</span><span class="chip">ArcGIS</span><span class="chip">QGIS</span><span class="chip">Global Mapper</span><span class="chip">Surfer</span><span class="chip">Strater</span></div></div>
+    <div class="unit"><time>Aug 2025</time><h3>Industrial training</h3><div class="org">Atomic Minerals Directorate for Exploration and Research · Ghatshila</div>
+      <p>Geological mapping and radiometric checking in the Surda–Terenga area of the Singhbhum Shear Zone, East Singhbhum, with lithological mapping and core logging. Visited the UCIL Narwapahar underground mine.</p></div>
+    <div class="unit"><time>Aug 2025</time><h3>Field training</h3><div class="org">Department of Geography, Adamas University · Taki</div>
+      <p>Two days of hands-on work in water quality measurement, bathymetric surveying, biomass estimation and post-field processing.</p>
+      <div class="chips"><span class="chip">Echo sounder</span><span class="chip">Abney level</span><span class="chip">Multiparameter probe</span><span class="chip">Laser distance finder</span><span class="chip">GPS</span></div></div>
+    <div class="unit"><time>Mar 2025</time><h3>Geological field work</h3><div class="org">Presidency University · Purulia</div>
+      <p>Structural mapping and tectonic evolution of the North Purulia Shear Zone.</p></div>
+    <div class="unit"><time>Jan 2024</time><h3>Mine visit</h3><div class="org">Jogamaya Devi College · Kharia, West Bengal</div>
+      <p>Open-cast coal mine, clay mine and dam visit, with exposure to the mining process.</p></div>
+    <div class="unit"><time>Feb 2023</time><h3>Geological field work</h3><div class="org">Jogamaya Devi College · Galudih, Jharkhand</div>
+      <p>Litho-structural mapping of Chaibasa Formation rocks in and around Galudih.</p></div>
+    <div class="unit"><time>Jan 2022</time><h3>Geological field work</h3><div class="org">Jogamaya Devi College · Maithon</div>
+      <p>Petrological studies and lithological identification.</p></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="hd"><svg><rect width="100%" height="100%" fill="url(#ore)"/></svg><h2>Projects</h2></div>
+  <div class="grid">
+    <article class="card" style="--c:var(--sienna)"><h3>Orebody geometry and grade–tonnage</h3><p>Models orebody geometry and computes grade and tonnage from drillhole data.</p><a class="go" href="https://github.com/bananijana/drillhole-orebody-analysis-python" target="_blank" rel="noopener">View on GitHub</a></article>
+    <article class="card" style="--c:var(--ochre)"><h3>Ore potential zonation with machine learning</h3><p>Ranks ore potential from multi-criteria geospatial evidence, using Python, scikit-learn and Matplotlib.</p><a class="go" href="https://github.com/bananijana/ore-potential-zonation-ml" target="_blank" rel="noopener">View on GitHub</a></article>
+    <article class="card" style="--c:var(--slate)"><h3>ERT subsurface resistivity inversion</h3><p>Characterises subsurface resistivity from electrical resistivity tomography with Python and pyGIMLi.</p><a class="go" href="https://github.com/bananijana/resistivity-inversion-python" target="_blank" rel="noopener">View on GitHub</a></article>
+    <article class="card" style="--c:var(--schist)"><h3>Random Forest for hydrochemical facies</h3><p>Classifies groundwater hydrochemical facies from water quality parameters.</p><a class="go" href="https://github.com/bananijana/water-quality-classification-rf" target="_blank" rel="noopener">View on GitHub</a></article>
+    <article class="card" style="--c:var(--moss)"><h3>Hydrogeochemical data processing</h3><p>Cleans hydrogeochemical datasets and applies statistical modelling in Python.</p><a class="go" href="https://github.com/bananijana/hydrogeochemistry-analysis-python" target="_blank" rel="noopener">View on GitHub</a></article>
+    <article class="card" style="--c:var(--sienna)"><h3>Mining zone water quality and EIA</h3><p>Environmental impact assessment of mining-zone water using geochemical indices and machine learning, with Anikate Chowdhury.</p><a class="go" href="https://github.com/bananijana/2.eia-mining-zone-water-quality-ml" target="_blank" rel="noopener">View on GitHub</a></article>
+    <article class="card" style="--c:var(--ochre)"><h3>Groundwater Resilience Index</h3><p>A machine-learning-assisted index of groundwater resilience, built with Anikate Chowdhury.</p><a class="go" href="https://github.com/anikatechowdhury/ml-assisted-groundwater-resilience" target="_blank" rel="noopener">View on GitHub</a></article>
+    <article class="card" style="--c:var(--slate)"><h3>Well log petrophysics and seismic modelling</h3><p>Subsurface characterisation from well logs, with synthetic seismic forward modelling.</p><a class="go" href="https://github.com/bananijana/petrophysics-synthetic-seismic-python" target="_blank" rel="noopener">View on GitHub</a></article>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="hd"><svg><rect width="100%" height="100%" fill="url(#shale)"/></svg><h2>Publications</h2></div>
+  <div class="pub"><h3>Evaluating Groundwater Resilience for WASH Planning in a Semi-Arid Region Through a GIS–Machine Learning Framework: Alwar District, Rajasthan</h3><div class="v">National WASH Conference 2026, SPM NIWAS · 16 Feb 2026</div><div class="a">Jana B.*, Chowdhury A., Banerjee S., Ali S.A., Sarkar A.</div></div>
+  <div class="pub"><h3>Machine Learning-Enhanced Analysis of Temporal b-Value Variations Across Different Tectonic Settings</h3><div class="v">BMES-2026, Dept. of Applied Geophysics, IIT (ISM) Dhanbad · 17 Jan 2026</div><div class="a">Jana B.*, Chowdhury A.</div></div>
+  <div class="pub"><h3>Integrated Morphotectonic Assessment of the Torsa–Amo Chu River Basin Using Geomorphic Indices and Machine Learning</h3><div class="v">BMES-2026, IIT (ISM) Dhanbad · 17 Jan 2026</div><div class="a">Chowdhury A.*, Jana B.</div></div>
+  <div class="pub"><h3>Integrated Hydro-Geophysical and GIS-Based Characterization of Micro-Level Aquifers in the Sundarbans, West Bengal</h3><div class="v">Water Summit 2025, International Conference on Sustainable Groundwater Management · 20 Nov 2025</div><div class="a">Jana B.*, Chowdhury A., Sarkar A.</div></div>
+  <div class="pub"><h3>Forecasting Groundwater Dynamics in Jalpaiguri District, North Bengal, Using Machine Learning and GRACE Satellite Data</h3><div class="v">Water Summit 2025 · 20 Nov 2025</div><div class="a">Chowdhury A.*, Jana B., Sarkar A.</div></div>
+  <div class="pub"><h3>Quantification of Groundwater Quality Issues in Reference to Urbanization in Parts of Barddhaman District, West Bengal</h3><div class="v">32nd West Bengal State Science &amp; Technology Congress · 19 Jan 2025</div></div>
+  <p style="font-size:.82rem;color:var(--mute)">* corresponding author</p>
+</section>
+
+<section id="skills">
+  <div class="hd"><svg><rect width="100%" height="100%" fill="url(#grav)"/></svg><h2>Skills</h2></div>
+  <div class="sk">
+    <div><h3>Exploration and modelling</h3><div class="chips"><span class="chip">Mineral exploration</span><span class="chip">Resource estimation</span><span class="chip">Borehole correlation</span><span class="chip">Cross-sectioning</span><span class="chip">Core logging</span><span class="chip">Geostatistics</span><span class="chip">Technical reports</span></div></div>
+    <div><h3>GIS and remote sensing</h3><div class="chips"><span class="chip">ArcGIS</span><span class="chip">QGIS</span><span class="chip">Global Mapper</span><span class="chip">Google Earth Pro</span><span class="chip">Remote sensing</span><span class="chip">GRACE</span></div></div>
+    <div><h3>Python and data</h3><div class="chips"><span class="chip">Python</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span><span class="chip">Scikit-learn</span><span class="chip">pyGIMLi</span></div></div>
+    <div><h3>Hydrogeology</h3><div class="chips"><span class="chip">MODFLOW</span><span class="chip">MODPATH</span><span class="chip">GMS</span><span class="chip">PHREEQC</span><span class="chip">HEC-HMS</span><span class="chip">Groundwater modelling</span></div></div>
+    <div><h3>Geophysics and lab</h3><div class="chips"><span class="chip">Earth resistivity (VES)</span><span class="chip">ERT inversion</span><span class="chip">Petrography</span><span class="chip">Thin sections</span><span class="chip">XRD analysis</span><span class="chip">Grain size</span></div></div>
+    <div><h3>Drawing and office</h3><div class="chips"><span class="chip">AutoCAD</span><span class="chip">LibreCAD</span><span class="chip">Surfer</span><span class="chip">Strater</span><span class="chip">Rockworks</span><span class="chip">Georose</span><span class="chip">Stereonet</span><span class="chip">CorelDRAW</span><span class="chip">Excel</span><span class="chip">Word</span><span class="chip">PowerPoint</span></div></div>
+  </div>
+</section>
+
+<section id="learning">
+  <h2>Education, courses and honours</h2>
+  <div class="two">
+    <div>
+      <ul class="list">
+        <li><b>M.Sc. Applied Geology</b>, Presidency University, Kolkata<small>Sep 2024 – Jul 2026</small></li>
+        <li><b>B.Sc. (Hons) Geology</b>, Jogamaya Devi College<small>Nov 2021 – Jul 2024</small></li>
+        <li><b>Higher Secondary (PCMB)</b>, Dwarhatta Rajeshwari Institution<small>2019 – 2021</small></li>
+        <li><b>Secondary</b>, Haripal Tirthabasi Girls' High School<small>2013 – 2019</small></li>
+      </ul>
+      <h3 style="margin:26px 0 6px">Honours</h3>
+      <ul class="list hon">
+        <li>Rank 3, PUMBDET postgraduate entrance (Geology), WBJEEB, 2024</li>
+        <li>National Scholarship Portal scholar, Government of India, 2021</li>
+        <li>Took part in the NASA-supported International Astronomical Search Collaboration, 2025</li>
+        <li>1st position, District Geography Talent Search, 2015</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-bottom:6px">Courses and certificates</h3>
+      <ul class="list">
+        <li>Machine Learning I<small>Columbia University</small></li>
+        <li>Applied Data Science with Python<small>IBM · Nov 2025</small></li>
+        <li>Remote Sensing and Digital Image Analysis<small>IIRS, ISRO · Sep 2025</small></li>
+        <li>Advances in Remote Sensing for Geological Applications<small>IIRS, ISRO · Oct 2025</small></li>
+        <li>Remote Sensing in Water Resources and Climate Change<small>University of Oulu, PhD short course · Sep 2025</small></li>
+        <li>The ArcGIS Imagery MOOC<small>Esri · Nov 2025</small></li>
+        <li>QGIS Mastery<small>Quest GIS · Nov 2025</small></li>
+        <li>Python Programming in Geology<small>TerraPy Education · Nov 2025</small></li>
+        <li>Bridging Mathematics and Earth Sciences (poster)<small>IIT (ISM) Dhanbad · Jan 2026</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding:0">
+  <div class="contact">
+    <h2>Let's talk geology</h2>
+    <p>I am looking for roles in mineral exploration, resource estimation, hydrogeology and GIS. Send me a note and I will reply.</p>
+    <div class="btns">
+      <a class="btn pri" href="mailto:bananijana2002@gmail.com">bananijana2002@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/banani-2002-jana/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/bananijana" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <footer>© 2026 Banani Jana. Memberships: AIPG, Arizona Geological Society, IAH, ISPRS and Young Hydrologic Society.</footer>
+</section>
+</main>
+</div>
+</body>
+</html>
